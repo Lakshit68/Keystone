@@ -71,11 +71,11 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="px-6 py-4 mt-20">
-          <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
             <h1 className="text-2xl font-bold text-pink-500">Admin Dashboard</h1>
             <div className="flex space-x-4">
               <button
@@ -95,15 +95,15 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-4">
         {/* Sidebar */}
-        <div className="w-64 bg-white shadow-sm min-h-screen">
+        <div className="w-full md:w-56 bg-white shadow-sm min-h-0 md:min-h-screen">
           <nav className="mt-6">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full text-left px-6 py-3 flex items-center space-x-3 hover:bg-gray-50 ${
+                className={`w-full text-left px-4 md:px-6 py-3 flex items-center space-x-3 hover:bg-gray-50 ${
                   activeTab === item.id ? 'bg-blue-50 border-r-2 border-blue-500 text-blue-700' : 'text-gray-700'
                 }`}
               >
@@ -115,7 +115,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
+        <div className="flex-1 p-4 md:p-6">
           {renderContent()}
         </div>
       </div>

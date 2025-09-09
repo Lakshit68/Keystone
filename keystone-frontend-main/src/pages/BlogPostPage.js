@@ -2,13 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getApiBase } from "../utils/apiBase";
 
-const resolveImageUrl = (url) => {
-  if (!url) return "";
-  if (url.startsWith("https")) return url;
-  const base = getApiBase();
-  return `${base}${url}`;
-};
-
 const formatDate = (iso) => {
   if (!iso) return "";
   try {
@@ -31,43 +24,24 @@ const useBlogPost = (id) => {
   useEffect(() => {
     if (!id) return;
     let ignore = false;
+
     const fetchPost = async () => {
       setLoading(true);
       setError(null);
       try {
-        const base = getApiBase();
-        const res = await fetch(`${base}/api/blogs/${id}?populate=*`);
+        const res = await fetch(`https://keystone-backend-1.onrender.com/api/blogs/${id}`);
         if (!res.ok) throw new Error(`Failed to fetch post ${id}`);
-        const json = await res.json();
-        console.log(json)
-        
-        const a = json || {};
-
-        let cover = `https://keystone-backend-1.onrender.com/api/images/blog/${a._id}`;
-        let gallery = [];
-        // if (Array.isArray(a?.image) && a.image.length > 0) {
-        //   cover = resolveImageUrl(a.image[0]?.url || a.image[0]?.formats?.large?.url);
-        //   gallery = a.image
-        //     .slice(1)
-        //     .map((img) => resolveImageUrl(img?.url || img?.formats?.large?.url))
-        //     .filter(Boolean);
-        // } else {
-        //   cover = resolveImageUrl(a?.image?.url || a?.cover?.data?.attributes?.url);
-        //   gallery = (a?.gallery || a?.images || a?.media || [])
-        //     .map((img) => resolveImageUrl(img?.url || img?.attributes?.url))
-        //     .filter(Boolean);
-        // }
-
-        const content = a?.content  || a?.description || "";
+        const a = await res.json();
 
         const mapped = {
           id: a._id,
-          title: a?.title || "Untitled",
-          date: a?.date || a?.publishedAt,
-          cover,
-          content,
-          gallery
+          title: a.title || "Untitled",
+          date: a.publishedAt || a.createdAt,
+          cover: `https://keystone-backend-1.onrender.com/api/images/blog/${a._id}`,
+          content: a.content || a.description || "",
+          gallery: [] // extend later if you add gallery images
         };
+
         if (!ignore) setPost(mapped);
       } catch (e) {
         if (!ignore) setError(e?.message || "Failed to load post");
@@ -75,6 +49,7 @@ const useBlogPost = (id) => {
         if (!ignore) setLoading(false);
       }
     };
+
     fetchPost();
     return () => {
       ignore = true;
@@ -117,7 +92,7 @@ export const BlogPostPage = () => {
           </Link>
           {post?.date && (
             <span className="text-xs md:text-sm text-gray-500">
-              {formatDate(post.date)}
+              1 August 2025
             </span>
           )}
         </div>
@@ -144,36 +119,22 @@ export const BlogPostPage = () => {
           {error && <p className="text-red-700 font-semibold">{error}</p>}
           {!loading && !error && post && (
             <>
-              {/* Cover Image */}
-              {post?.cover && (
-                <div className="w-full mb-10">
+             {/* Cover Image */}
+             {post?.cover && (
+                <div className="w-full mb-8 md:mb-10">
                   <img
                     src={post.cover}
                     alt={post.title}
-                    className="w-full h-[600px] rounded-3xl object-cover"
-                    style={{ maxHeight: "700px" }}
+                    className="w-full h-64 md:h-96 lg:h-[800px] object-cover rounded-2xl md:rounded-3xl"
                   />
                 </div>
               )}
+
 
               {/* Content */}
               {post.content && (
                 <div className="my-7 bg-white border border-gray-200 px-6 py-6 rounded-lg shadow">
                   <Paragraphs text={post.content} />
-                </div>
-              )}
-
-              {/* Gallery Images */}
-              {post.gallery && post.gallery.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-6">
-                  {post.gallery.slice(0, 2).map((src, idx) => (
-                    <img
-                      key={idx}
-                      src={src}
-                      alt={`gallery-${idx}`}
-                      className="w-full h-[300px] rounded-lg shadow object-cover"
-                    />
-                  ))}
                 </div>
               )}
             </>
@@ -184,22 +145,7 @@ export const BlogPostPage = () => {
       {/* Footer */}
       <footer className="bg-black text-yellow-300 mt-16 py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-            <span className="font-medium text-xs md:text-sm">
-              Keystone — Global Value. Proven Innovation. Delivering Impact.
-            </span>
-            <nav className="flex space-x-4 text-xs md:text-sm text-yellow-200">
-              <a href="#" className="hover:text-white">
-                About Us
-              </a>
-              <a href="#" className="hover:text-white">
-                Contact
-              </a>
-              <a href="#" className="hover:text-white">
-                Blog
-              </a>
-            </nav>
-          </div>
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0" />
         </div>
       </footer>
     </div>

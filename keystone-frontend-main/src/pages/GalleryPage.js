@@ -103,7 +103,7 @@ const GalleryCard = ({ item, withThumbs }) => {
           src={mainImage}
           alt={item?.title}
           // className="w-full h-auto object-contain rounded-lg"
-             className="w-[680px] h-[350px] object-fill rounded-lg mx-auto"
+           className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-lg mx-auto"
           loading="lazy"
         />
       </div>
