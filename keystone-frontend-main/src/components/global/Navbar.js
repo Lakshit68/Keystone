@@ -32,10 +32,7 @@ const navItems = [
     label: "Resources",
     link: "/resources",
   },
-  {
-    label: "References",
-    link: "/references",
-  },
+  
   {
     label: "Keystone Industries",
     link: "/keystoneCompanies",
@@ -54,6 +51,10 @@ const navItems = [
   {
     label: "Locations",
     link: "/location",
+  },
+  {
+    // label: "Admin",
+    link: "/admin",
   },
 ];
 

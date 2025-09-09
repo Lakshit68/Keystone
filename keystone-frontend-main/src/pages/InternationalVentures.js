@@ -20,7 +20,7 @@ export const InternationalVenturesPage = () => {
           videotwo
         }
       />
-      <div className="w-11/12 md:w-10/12 mx-auto flex flex-col md:gap-12 mb-8 ">
+      <div className="w-11/12 md:w-10/12 mx-auto flex-col md:gap-12 mb-8 space-y-0 ">
         {internationalVenturesData.map((item, index) => (
           <InfoCard
             key={`first-${index}`}

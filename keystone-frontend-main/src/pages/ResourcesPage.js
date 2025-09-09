@@ -20,23 +20,22 @@ const useResources = () => {
       setLoading(true);
       setError(null);
       try {
-        const url = `${getApiBase()}/api/resources?populate=*`;
-        const res = await fetch(url);
-        const json = await res.json();
-        if (ignore) return;
+        const response = await fetch('http://localhost:5001/api/resources');
+        if (!response.ok) throw new Error('Failed to fetch resources');
+        const data = await response.json();
         
-        const mapped = (json?.data || []).map((node) => {
-          return {
-            id: node.id,
-            title: node.title || "",
-            description: node.description || "",
-            image: resolveImageUrl(node.image?.url),
-            file: resolveImageUrl(node.file?.url),
-            category: node.category || "",
-            publishedAt: node.publishedAt
-          };
-        });
-        setResources(mapped);
+        if (!ignore) {
+          const mapped = data.map((resource) => ({
+            id: resource._id,
+            title: resource.title || "",
+            description: resource.description || "",
+            image: `http://localhost:5001/api/images/resource/${resource._id}`,
+            file: `http://localhost:5001/api/files/resource/${resource._id}`,
+            category: resource.category || "",
+            publishedAt: resource.publishedAt || resource.createdAt
+          }));
+          setResources(mapped);
+        }
       } catch (e) {
         setError(e?.message || "Failed to load resources");
       } finally {

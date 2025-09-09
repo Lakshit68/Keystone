@@ -137,10 +137,10 @@ const Footer = () => {
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 mt-10 gap-4">
           <div className="space-x-4">
-            <ScrollToTopLink to="/terms" className="hover:underline">
+            <ScrollToTopLink to="/cookies" className="hover:underline">
               Cookies
             </ScrollToTopLink>
-            <ScrollToTopLink to="/privacy" className="hover:underline">
+            <ScrollToTopLink to="/terms" className="hover:underline">
               Privacy Policy
             </ScrollToTopLink>
           </div>

@@ -36,32 +36,28 @@ const ResourceDownloadPage = () => {
     setLoading(true);
 
     try {
-      const submitData = {
-        data: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          resourceTitle: resourceData?.title || '',
-          resourceId: resourceId,
-          submittedAt: new Date().toISOString()
-        }
-      };
+      // For now, just simulate form submission
+      // In a real app, you'd save this to a database
+      console.log('Form submitted:', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        resourceTitle: resourceData?.title || '',
+        resourceId: resourceId,
+        submittedAt: new Date().toISOString()
+      });
 
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || 'http://localhost:1337'}/api/resources`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(submitData)
-        }
-      );
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-      if (!response.ok) throw new Error('Failed to submit form');
-
-      if (resourceData?.file?.url) {
-        setDownloadUrl(`${process.env.REACT_APP_BACKEND_URL}${resourceData.file.url}`);
+      // Get the download URL from the resource
+      if (resourceData?.file) {
+        setDownloadUrl(resourceData.file);
+        setDownloadReady(true);
+      } else {
+        // If no file, still show success message
+        setDownloadReady(true);
       }
-      setDownloadReady(true);
     } catch (error) {
       console.error('Error processing download:', error);
       alert('There was an error processing your request. Please try again.');
@@ -120,10 +116,10 @@ const ResourceDownloadPage = () => {
               Unlock Your Blueprint for <span className="text-yellow-500">Modern Hospitality</span>
             </p>
           </div>
-          {resourceData?.image?.url && (
+          {resourceData?.image && (
             <div className="mt-6">
               <img
-                src={`${process.env.REACT_APP_BACKEND_URL}${resourceData.image.url}`}
+                src={resourceData.image}
                 alt={resourceData.title}
                 className="rounded-lg w-full object-cover"
               />

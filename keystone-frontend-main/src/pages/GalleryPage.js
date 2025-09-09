@@ -32,22 +32,21 @@ const useGallery = () => {
       setLoading(true);
       setError(null);
       try {
-        const url = `${getApiBase()}/api/galleries?populate=*`;
-        const res = await fetch(url);
-        const json = await res.json();
-        if (ignore) return;
-        const mapped = (json?.data || []).map((node) => {
-          const images = node?.image || [];
-          return {
-            id: node.id,
-            title: node.title || "",
-            date: node.date || node.publishedAt,
-            images: images
-              .map((img) => resolveImageUrl(img?.url))
-              .filter(Boolean),
-          };
-        });
-        setItems(mapped);
+        const response = await fetch('http://localhost:5001/api/galleries');
+        if (!response.ok) throw new Error('Failed to fetch galleries');
+        const data = await response.json();
+        
+        if (!ignore) {
+          const mapped = data.map((gallery) => ({
+            id: gallery._id,
+            title: gallery.title || "",
+            date: gallery.publishedAt || gallery.createdAt,
+            images: gallery.images.map((_, index) => 
+              `http://localhost:5001/api/images/gallery/${gallery._id}/${index}`
+            ),
+          }));
+          setItems(mapped);
+        }
       } catch (e) {
         setError(e?.message || "Failed to load gallery");
       } finally {
@@ -104,7 +103,7 @@ const GalleryCard = ({ item, withThumbs }) => {
           src={mainImage}
           alt={item?.title}
           // className="w-full h-auto object-contain rounded-lg"
-             className="max-w-[105%] h-auto object-contain rounded-lg mx-auto"
+             className="w-[680px] h-[350px] object-fill rounded-lg mx-auto"
           loading="lazy"
         />
       </div>

@@ -68,7 +68,7 @@ export const HomePage = () => {
         paragraph="Keystone International Ventures is a dynamic global firm at the forefront of strategic investment, innovation, and transformative business growth across key industries."
       />
 
-      {/* Industries - circular tiles */}
+      {/* Industries - circular tiles
       <section className="w-11/12 md:w-9/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
         {keystoneCompanies.map((item, idx) => (
           <button
@@ -76,8 +76,8 @@ export const HomePage = () => {
             onClick={() => item.link && navigate(item.link)}
             className="group focus:outline-none"
           >
-            <div className="relative w-56 h-56 rounded-full overflow-hidden shadow-md">
-              <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+               <div className="relative w-56 h-56 rounded-full overflow-hidden shadow-md transform transition-transform duration-300 group-hover:scale-105">
+               <img src={item.image} alt={item.title} className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
                 <span className="text-white font-semibold text-sm leading-snug">
@@ -87,7 +87,19 @@ export const HomePage = () => {
             </div>
           </button>
         ))}
-      </section>
+      </section> */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center gap-4 w-11/12 md:w-9/12  mx-auto">
+        {keystoneCompanies.map((team, index) => (
+          <InfoImageSection
+            key={index}
+            imageSrc={team.image}
+            altText={team.title}
+            title={team.title}
+            content={team.description}
+            link={team.link}
+          />
+        ))}
+      </div>
 
 
       <Header

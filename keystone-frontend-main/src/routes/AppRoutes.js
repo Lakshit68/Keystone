@@ -19,10 +19,12 @@ import { KeystonePage } from "../pages/keystonePage";
 import { GalleryPage } from "../pages/GalleryPage";
 import { BlogPage } from "../pages/BlogPage";
 import { BlogPostPage } from "../pages/BlogPostPage";
-import { ReferencesPage } from "../pages/ReferencesPage";
+import { CookiesPage } from "../pages/CookiesPage";
 import { TermsPage } from "../pages/TermsPage";
 import ResourcesPage from "../pages/ResourcesPage";
 import ResourceDownloadPage from "../pages/ResourceDownloadPage";
+import AdminDashboard from "../pages/AdminDashboard";
+import AdminLogin from "../pages/AdminLogin";
 
 const AppRoutes = () => {
   return (
@@ -55,10 +57,12 @@ const AppRoutes = () => {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
-        <Route path="/references" element={<ReferencesPage />} />
+        <Route path="/cookies" element={<CookiesPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/resources/download/:resourceId" element={<ResourceDownloadPage />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </>
   );

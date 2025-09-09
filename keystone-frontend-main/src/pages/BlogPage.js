@@ -34,44 +34,21 @@ const useBlogs = () => {
       setLoading(true);
       setError(null);
       try {
-        const base = getApiBase();
-        const tryEndpoints = [
-          `${base}/api/blogs?populate=*`
-        ];
-        let data = null;
-        for (const url of tryEndpoints) {
-          const res = await fetch(url);
-          if (res.ok) {
-            const json = await res.json();
-            if (json?.data) {
-              data = json.data;
-              break;
-            }
-          }
+        const response = await fetch('http://localhost:5001/api/blogs');
+        if (!response.ok) throw new Error('Failed to fetch blogs');
+        const data = await response.json();
+        
+        if (!ignore) {
+          const mapped = data.map((blog) => ({
+            id: blog._id,
+            documentId: blog._id,
+            title: blog.title || "Untitled",
+            summary: blog.description || "",
+            date: blog.publishedAt || blog.createdAt,
+            image: blog.image,
+          }));
+          setPosts(mapped);
         }
-        if (!data) throw new Error("No blog endpoint responded");
-
-        const mapped = data.map((node) => {
-            console.log(node);
-          
-            // handle both single object and array of images
-            let coverUrl = null;
-            if (Array.isArray(node?.image)) {
-              coverUrl = node.image[0]?.url; // take the first image
-            } else {
-              coverUrl = node?.image?.url;
-            }
-          
-            return {
-              id: node.id,
-              documentId: node.documentId,
-              title: node.title || "Untitled",
-              summary: node.description || node.excerpt || "",
-              date: node.date || node.publishedAt,
-              image: resolveImageUrl(coverUrl),
-            };
-          });
-        if (!ignore) setPosts(mapped);
       } catch (e) {
         if (!ignore) setError(e?.message || "Failed to load blog posts");
       } finally {
@@ -94,11 +71,12 @@ const useBlogs = () => {
 };
 
 const BlogCard = ({ post, onClick }) => {
+  console.log(post)
   return (
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
         <img
-          src={post.image}
+          src={`http://localhost:5001/api/images/blog/${post.id}`}
           alt={post.title}
           className="w-full h-56 object-cover rounded-[20px]"
           loading="lazy"
@@ -110,7 +88,7 @@ const BlogCard = ({ post, onClick }) => {
         {post.summary && (
           <p className="text-sm text-gray-600 mt-2 line-clamp-2">{post.summary}</p>
         )}
-         <p className="text-xs text- mt-4"> John Wills <span className="text-xl font-black  ">•</span> {formatDate(post.date)}</p>
+         <p className="text-xs text- mt-4"> John Wills <span className="text-xl font-black  ">•</span> 1 August 2025</p>
       </div>
     </div>
   );
