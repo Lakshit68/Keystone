@@ -16,7 +16,7 @@ export const InternationalVenturesPage = () => {
         title="About Keystone"
         subtitle=" Keystone International Ventures"
         backgroundVideo={
-          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884396/international_rqp8at.mp4"
+          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884396/international_rqp8at.mp4"
           videotwo
         }
       />
@@ -26,7 +26,7 @@ export const InternationalVenturesPage = () => {
             key={`first-${index}`}
             index={index}
             imageSrc={
-              // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/InternationalVenture_dven9v.png"
+              // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/InternationalVenture_dven9v.png"
               internationalventuresservices
             }
             description={item.paragraphs}
@@ -35,7 +35,7 @@ export const InternationalVenturesPage = () => {
 
         <TwoSidedSection
           image={{
-            // src: "https://res.cloudinary.com/dopvfhjhs/image/upload/v1751134909/c2104ab6-d731-4c53-8d3e-f2805f5f67b5.png",
+            // src: "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1751134909/c2104ab6-d731-4c53-8d3e-f2805f5f67b5.png",
             src: pramodfounder,
             alt: "Founder Image",
             width: 100,

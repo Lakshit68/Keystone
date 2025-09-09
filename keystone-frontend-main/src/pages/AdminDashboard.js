@@ -143,7 +143,7 @@ const BlogManagement = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/blogs');
+      const response = await fetch('https://keystone-backend-1.onrender.com/api/blogs');
       const data = await response.json();
       setBlogs(data);
     } catch (error) {
@@ -168,8 +168,8 @@ const BlogManagement = () => {
     e.preventDefault();
     try {
       const url = editingBlog 
-        ? `http://localhost:5001/api/blogs/${editingBlog._id}`
-        : 'http://localhost:5001/api/blogs';
+        ? `https://keystone-backend-1.onrender.com/api/blogs/${editingBlog._id}`
+        : 'https://keystone-backend-1.onrender.com/api/blogs';
       
       const method = editingBlog ? 'PUT' : 'POST';
       
@@ -205,7 +205,7 @@ const BlogManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this blog?')) {
       try {
-        await fetch(`http://localhost:5001/api/blogs/${id}`, { method: 'DELETE' });
+        await fetch(`https://keystone-backend-1.onrender.com/api/blogs/${id}`, { method: 'DELETE' });
         fetchBlogs();
       } catch (error) {
         console.error('Error deleting blog:', error);
@@ -310,7 +310,7 @@ const BlogManagement = () => {
         {blogs.map((blog) => (
           <div key={blog._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={`http://localhost:5001/api/images/blog/${blog._id}`}
+              src={`https://keystone-backend-1.onrender.com/api/images/blog/${blog._id}`}
               alt={blog.title}
               className="w-full h-48 object-cover"
             />
@@ -357,7 +357,7 @@ const GalleryManagement = () => {
 
   const fetchGalleries = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/galleries');
+      const response = await fetch('https://keystone-backend-1.onrender.com/api/galleries');
       const data = await response.json();
       setGalleries(data);
     } catch (error) {
@@ -395,8 +395,8 @@ const GalleryManagement = () => {
     e.preventDefault();
     try {
       const url = editingGallery 
-        ? `http://localhost:5001/api/galleries/${editingGallery._id}`
-        : 'http://localhost:5001/api/galleries';
+        ? `https://keystone-backend-1.onrender.com/api/galleries/${editingGallery._id}`
+        : 'https://keystone-backend-1.onrender.com/api/galleries';
       
       const method = editingGallery ? 'PUT' : 'POST';
       
@@ -430,7 +430,7 @@ const GalleryManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this gallery?')) {
       try {
-        await fetch(`http://localhost:5001/api/galleries/${id}`, { method: 'DELETE' });
+        await fetch(`https://keystone-backend-1.onrender.com/api/galleries/${id}`, { method: 'DELETE' });
         fetchGalleries();
       } catch (error) {
         console.error('Error deleting gallery:', error);
@@ -532,7 +532,7 @@ const GalleryManagement = () => {
           <div key={gallery._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             {gallery.images.length > 0 && (
               <img
-                src={`http://localhost:5001/api/images/gallery/${gallery._id}/0`}
+                src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/0`}
                 alt={gallery.title}
                 className="w-full h-48 object-cover"
               />
@@ -583,7 +583,7 @@ const ResourceManagement = () => {
 
   const fetchResources = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/resources');
+      const response = await fetch('https://keystone-backend-1.onrender.com/api/resources');
       const data = await response.json();
       setResources(data);
     } catch (error) {
@@ -624,8 +624,8 @@ const ResourceManagement = () => {
     e.preventDefault();
     try {
       const url = editingResource 
-        ? `http://localhost:5001/api/resources/${editingResource._id}`
-        : 'http://localhost:5001/api/resources';
+        ? `https://keystone-backend-1.onrender.com/api/resources/${editingResource._id}`
+        : 'https://keystone-backend-1.onrender.com/api/resources';
       
       const method = editingResource ? 'PUT' : 'POST';
       
@@ -661,7 +661,7 @@ const ResourceManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this resource?')) {
       try {
-        await fetch(`http://localhost:5001/api/resources/${id}`, { method: 'DELETE' });
+        await fetch(`https://keystone-backend-1.onrender.com/api/resources/${id}`, { method: 'DELETE' });
         fetchResources();
       } catch (error) {
         console.error('Error deleting resource:', error);
@@ -764,7 +764,7 @@ const ResourceManagement = () => {
         {resources.map((resource) => (
           <div key={resource._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={`http://localhost:5001/api/images/resource/${resource._id}`}
+              src={`https://keystone-backend-1.onrender.com/api/images/resource/${resource._id}`}
               alt={resource.title}
               className="w-full h-48 object-cover"
             />

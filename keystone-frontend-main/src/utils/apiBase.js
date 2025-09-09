@@ -8,9 +8,9 @@ export const getApiBase = () => {
   // Remove trailing slashes
   base = base.replace(/\/+$/, "");
 
-  // If using localhost with https, force http to avoid SSL errors in local dev
-  if (base.startsWith("https://localhost:")) {
-    base = base.replace(/^https:\/\//i, "http://");
+  // If using localhost with httpss, force https to avoid SSL errors in local dev
+  if (base.startsWith("httpss://localhost:")) {
+    base = base.replace(/^httpss:\/\//i, "https://");
   }
 
   return base;

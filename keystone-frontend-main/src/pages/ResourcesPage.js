@@ -4,7 +4,7 @@ import { getApiBase } from '../utils/apiBase';
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("https")) return url;
   const base = getApiBase();
   return `${base}${url}`;
 };
@@ -20,7 +20,7 @@ const useResources = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:5001/api/resources');
+        const response = await fetch('https://keystone-backend-1.onrender.com/api/resources');
         if (!response.ok) throw new Error('Failed to fetch resources');
         const data = await response.json();
         
@@ -29,8 +29,8 @@ const useResources = () => {
             id: resource._id,
             title: resource.title || "",
             description: resource.description || "",
-            image: `http://localhost:5001/api/images/resource/${resource._id}`,
-            file: `http://localhost:5001/api/files/resource/${resource._id}`,
+            image: `https://keystone-backend-1.onrender.com/api/images/resource/${resource._id}`,
+            file: `https://keystone-backend-1.onrender.com/api/files/resource/${resource._id}`,
             category: resource.category || "",
             publishedAt: resource.publishedAt || resource.createdAt
           }));

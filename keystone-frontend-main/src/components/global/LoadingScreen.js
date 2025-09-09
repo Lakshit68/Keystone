@@ -50,7 +50,7 @@ const LoadingScreen = ({ onFinish }) => {
           <video
             ref={videoRef}
             src={
-              // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884311/loadingAnimation_kkoipb.mp4"
+              // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884311/loadingAnimation_kkoipb.mp4"
               loadingAnimation
             }
             autoPlay
@@ -73,7 +73,7 @@ const LoadingScreen = ({ onFinish }) => {
         <img
           src={
             "/logo.png"
-            // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
+            // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
           }
           alt="Logo"
           className={`absolute transition-all duration-1000 ease-in-out ${

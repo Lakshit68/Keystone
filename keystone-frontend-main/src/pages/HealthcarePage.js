@@ -11,7 +11,7 @@ export const HealthcarePage = () => {
         title=" Keystone"
         subtitle="Healthcare"
         backgroundVideo={
-          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884330/healthcare_scjgwd.mp4"
+          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884330/healthcare_scjgwd.mp4"
           videonine
         }
       />
@@ -20,7 +20,7 @@ export const HealthcarePage = () => {
           key={index}
           index={index}
           imageSrc={
-            // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884311/healthcare_qxvsfp.png"
+            // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884311/healthcare_qxvsfp.png"
             item.image
           }
           description={item.paragraphs}

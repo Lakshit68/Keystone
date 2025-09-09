@@ -4,7 +4,7 @@ import { getApiBase } from "../utils/apiBase";
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("https")) return url;
   const base = getApiBase();
   return `${base}${url}`;
 };
@@ -43,7 +43,7 @@ const useBlogPost = (id) => {
         
         const a = json || {};
 
-        let cover = `http://localhost:5001/api/images/blog/${a._id}`;
+        let cover = `https://keystone-backend-1.onrender.com/api/images/blog/${a._id}`;
         let gallery = [];
         // if (Array.isArray(a?.image) && a.image.length > 0) {
         //   cover = resolveImageUrl(a.image[0]?.url || a.image[0]?.formats?.large?.url);

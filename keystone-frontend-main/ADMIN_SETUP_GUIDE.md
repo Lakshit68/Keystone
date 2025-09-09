@@ -55,7 +55,7 @@ npm start
 ```
 
 ### 4. Access Admin Dashboard
-- Visit: http://localhost:3000/admin
+- Visit: https://localhost:3000/admin
 - Or click "Admin" in the main navigation
 
 ## 📊 **Admin Dashboard Features**
@@ -120,16 +120,16 @@ keystone-frontend-main/
 ## 🎯 **How to Use**
 
 ### **1. Add Content via Admin Dashboard**
-1. Go to http://localhost:3000/admin
+1. Go to https://localhost:3000/admin
 2. Click on the content type you want to manage
 3. Click "Add New [Type]"
 4. Fill in the form and upload images/files
 5. Click "Create [Type]"
 
 ### **2. View Content on Frontend**
-- **Blog**: http://localhost:3000/blog
-- **Gallery**: http://localhost:3000/gallery  
-- **Resources**: http://localhost:3000/resources
+- **Blog**: https://localhost:3000/blog
+- **Gallery**: https://localhost:3000/gallery  
+- **Resources**: https://localhost:3000/resources
 
 ### **3. Edit/Delete Content**
 1. Go to admin dashboard
@@ -168,7 +168,7 @@ keystone-frontend-main/
 
 ### **"Failed to fetch" errors**
 - Check if MongoDB is running: `brew services list | grep mongodb`
-- Check if server is running: `curl http://localhost:5000/api/blogs`
+- Check if server is running: `curl https://localhost:5000/api/blogs`
 
 ### **Images not displaying**
 - Check server logs for errors

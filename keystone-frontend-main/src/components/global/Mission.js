@@ -3,7 +3,7 @@ export default function Mission({ showOn = "" }) {
     <div className="w-10/12 relative mx-auto p-4   flex flex-col md:flex-row items-center gap-4 ">
       {/* <img
         src={
-          "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/quotes_gc1cbr.png"
+          "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/quotes_gc1cbr.png"
         }
         alt="Quotes"
         className="absolute top-0 right-4 w-24 h-24 md:w-32 md:h-32  select-none pointer-events-none"
@@ -11,7 +11,7 @@ export default function Mission({ showOn = "" }) {
       {/* <div className="w-11/12 relative mx-auto py-8  flex flex-col md:flex-row items-center gap-4 ">
         <div className="flex-shrink-0 z-50">
           <img
-            src="https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg"
+            src="httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg"
             alt="Mission Speaker"
             className="w-40 h-40 md:w-80 md:h-80 rounded-lg object-cover"
           />

@@ -10,7 +10,7 @@ export const teamMembers = [
     description:
       "Promod Sharma is a serial entrepreneur and visionary leader in the technology sector, known for founding and scaling high-growth, high-margin companies that deliver lasting impact.",
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg",
       pramod,
   },
   {
@@ -19,7 +19,7 @@ export const teamMembers = [
     description:
       "Jyoti Mahajan leads enterprise-wide execution and delivery, overseeing the implementation of innovative, high-impact solutions that drive operational excellence and scalable growth.",
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/Jyoti_xajjzc.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/Jyoti_xajjzc.png",
       jyoti,
   },
   {
@@ -28,7 +28,7 @@ export const teamMembers = [
     description:
       "Marcie Cheney is a seasoned executive responsible for seamlessly integrating enterprise operations, driving business development, and aligning technology strategies to support sustainable growth and innovation.",
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/c_pad,b_gen_fill,w_1179,h_1179/v1748884251/Marcie_y8jxs3.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/c_pad,b_gen_fill,w_1179,h_1179/v1748884251/Marcie_y8jxs3.png",
       marcie,
   },
   {
@@ -37,7 +37,7 @@ export const teamMembers = [
     description:
       "Bob Heckman leads enterprise IT strategy, digital transformation, and cybersecurity initiatives across government and commercial sectors for Keystone International Ventures.",
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/Bob_t1ipof.jpg",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/Bob_t1ipof.jpg",
       bob,
   },
 ];

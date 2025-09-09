@@ -76,7 +76,7 @@ const Footer = () => {
               <img
                 src={
                   "/logo.png"
-                  // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
+                  // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
                 }
                 alt="KeyStone Logo"
                 className="h-10 cursor-pointer"
@@ -145,11 +145,11 @@ const Footer = () => {
             </ScrollToTopLink>
           </div>
           <a
-            href="https://www.linkedin.com/company/keystone-international-ventures/"
+            href="httpss://www.linkedin.com/company/keystone-international-ventures/"
             target="_blank"
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-4 h-4"
               fill="none"
               viewBox="0 0 24 24"

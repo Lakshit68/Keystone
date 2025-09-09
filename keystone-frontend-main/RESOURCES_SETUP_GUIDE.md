@@ -21,7 +21,7 @@ npm run develop
 ```
 
 ### 2. Access Strapi Admin
-- Go to http://localhost:1337/admin
+- Go to https://localhost:1337/admin
 - Create admin account if first time
 
 ### 3. Add Resources
@@ -101,7 +101,7 @@ Resources are fetched from Strapi with:
 ## 🧪 Testing
 
 ### 1. Test Resources Page
-- Navigate to http://localhost:3000/resources
+- Navigate to https://localhost:3000/resources
 - Should see hero section with "RESOURCES" title
 - Should see "Keystone" branding and tagline
 - Should see resource cards (if any exist in Strapi)

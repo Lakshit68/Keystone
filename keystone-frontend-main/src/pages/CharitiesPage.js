@@ -15,12 +15,12 @@ export const ChartiesPage = () => {
     <div className="flex flex-col w-full gap-6 md:gap-12 mb-8 md:mb-16 mt-16">
       <HeroSection
         title="Keystone Charities"
-        // backgroundVideo="https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884421/charity_pjrvwb.mp4"
+        // backgroundVideo="httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884421/charity_pjrvwb.mp4"
         backgroundVideo={videoeight}
       />
       {/* <TwoSidedSection
         image={{
-          src: "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884252/oldCouple_zpas21.png",
+          src: "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884252/oldCouple_zpas21.png",
           alt: "Testimonial Image",
           width: 400,
           height: 300,
@@ -35,7 +35,7 @@ export const ChartiesPage = () => {
         <div className="flex flex-row gap-6 justify-center items-center w-full lg:w-6/12">
           <div className="w-1/2 flex justify-center">
             <img
-              // src="https://res.cloudinary.com/dopvfhjhs/image/upload/v1749048165/4220b967-d1bb-407d-8c68-f95ddf243867.png"
+              // src="httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1749048165/4220b967-d1bb-407d-8c68-f95ddf243867.png"
               src={pramodsfather}
               alt="Promod's Father"
               className=" w-60 h-60 md:h-80 object-cover object-top rounded-xl shadow-md"
@@ -43,7 +43,7 @@ export const ChartiesPage = () => {
           </div>
           <div className="w-1/2 flex justify-center">
             <img
-              // src="https://res.cloudinary.com/dopvfhjhs/image/upload/v1749047994/18f8e5c6-08f0-48be-a848-dca34cd91374.png"
+              // src="httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1749047994/18f8e5c6-08f0-48be-a848-dca34cd91374.png"
               src={pramodsmother}
               alt="Promod's Mother"
               className=" w-60 h-60 md:h-80 object-cover rounded-xl  shadow-md"
@@ -67,7 +67,7 @@ export const ChartiesPage = () => {
         <InfoCard key={index} description={item.paragraphs} />
       ))}
       <img
-        // src="https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884244/charity_hyy3lq.jpg"
+        // src="httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884244/charity_hyy3lq.jpg"
         src={groupwithhat}
         className="sm:h-[400px] md:w-8/12 w-10/12 rounded-lg mx-auto"
       />

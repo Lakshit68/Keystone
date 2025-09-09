@@ -24,7 +24,7 @@ const headquartersIcon = new Icon({
   iconUrl:
     "data:image/svg+xml;charset=UTF-8," +
     encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <svg xmlns="https://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
       <!-- Outer glow circle -->
       <circle cx="20" cy="20" r="18" fill="#FFD700" opacity="0.3"/>
       <!-- Main marker body -->
@@ -136,8 +136,8 @@ export default function MapWithMarkers() {
         }}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="httpss://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="httpss://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="httpss://carto.com/attributions">CARTO</a>'
         />
 
         {markerData.map((marker) => (

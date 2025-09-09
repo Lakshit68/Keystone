@@ -16,7 +16,7 @@ const formatDate = (isoDateString) => {
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("https")) return url;
   const base = getApiBase();
   return `${base}${url}`;
 };
@@ -32,7 +32,7 @@ const useGallery = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:5001/api/galleries');
+        const response = await fetch('https://keystone-backend-1.onrender.com/api/galleries');
         if (!response.ok) throw new Error('Failed to fetch galleries');
         const data = await response.json();
         
@@ -42,7 +42,7 @@ const useGallery = () => {
             title: gallery.title || "",
             date: gallery.publishedAt || gallery.createdAt,
             images: gallery.images.map((_, index) => 
-              `http://localhost:5001/api/images/gallery/${gallery._id}/${index}`
+              `https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${index}`
             ),
           }));
           setItems(mapped);

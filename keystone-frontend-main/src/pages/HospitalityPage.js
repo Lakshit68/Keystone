@@ -3,7 +3,7 @@
 
 // const resolveImageUrl = (url) => {
 //   if (!url) return "";
-//   if (url.startsWith("http")) return url;
+//   if (url.startsWith("https")) return url;
 //   const base = getApiBase();
 //   return `${base}${url}`;
 // };
@@ -94,16 +94,16 @@
 // const PropertyCard = ({ property }) => {
 //   // List of random hotel websites to open
 //   const hotelWebsites = [
-//     "https://www.marriott.com",
-//     "https://www.hilton.com",
-//     "https://www.hyatt.com",
-//     "https://www.ihg.com",
-//     "https://www.accor.com",
-//     "https://www.ritzcarlton.com",
-//     "https://www.fourseasons.com",
-//     "https://www.aman.com",
-//     "https://www.rosewoodhotels.com",
-//     "https://www.stregis.com"
+//     "httpss://www.marriott.com",
+//     "httpss://www.hilton.com",
+//     "httpss://www.hyatt.com",
+//     "httpss://www.ihg.com",
+//     "httpss://www.accor.com",
+//     "httpss://www.ritzcarlton.com",
+//     "httpss://www.fourseasons.com",
+//     "httpss://www.aman.com",
+//     "httpss://www.rosewoodhotels.com",
+//     "httpss://www.stregis.com"
 //   ];
 
 //   const handleCardClick = () => {
@@ -273,7 +273,7 @@ import { getApiBase } from "../utils/apiBase";
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("https")) return url;
   const base = getApiBase();
   return `${base}${url}`;
 };
@@ -364,16 +364,16 @@ const StarRating = ({ rating }) => {
 const PropertyCard = ({ property }) => {
   // List of random hotel websites to open
   const hotelWebsites = [
-    "https://www.marriott.com",
-    "https://www.hilton.com",
-    "https://www.hyatt.com",
-    "https://www.ihg.com",
-    "https://www.accor.com",
-    "https://www.ritzcarlton.com",
-    "https://www.fourseasons.com",
-    "https://www.aman.com",
-    "https://www.rosewoodhotels.com",
-    "https://www.stregis.com"
+    "httpss://www.marriott.com",
+    "httpss://www.hilton.com",
+    "httpss://www.hyatt.com",
+    "httpss://www.ihg.com",
+    "httpss://www.accor.com",
+    "httpss://www.ritzcarlton.com",
+    "httpss://www.fourseasons.com",
+    "httpss://www.aman.com",
+    "httpss://www.rosewoodhotels.com",
+    "httpss://www.stregis.com"
   ];
 
   const handleCardClick = () => {
@@ -438,7 +438,7 @@ export const HospitalityPage = () => {
         title=" Keystone"
         subtitle="Hospitality"
         backgroundVideo={
-          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884393/hospitality_rrtahj.mp4"
+          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884393/hospitality_rrtahj.mp4"
           videoseven
         }
       />
@@ -447,7 +447,7 @@ export const HospitalityPage = () => {
           key={index}
           index={index}
           imageSrc={
-            // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884283/hospitality_dxsdmj.png"
+            // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884283/hospitality_dxsdmj.png"
             item.image
           }
           description={item.paragraphs}

@@ -10,7 +10,7 @@
 ## 🧪 How to Test
 
 ### 1. Test the Main App
-- Open http://localhost:3000
+- Open https://localhost:3000
 - You should see the loading screen, then the main app
 - No more "useRoutes() may be used only in the context of a <Router> component" error
 
@@ -19,7 +19,7 @@
 - Click on "Resources" - should navigate to `/resources`
 
 ### 3. Test Resources Page
-- Navigate to http://localhost:3000/resources
+- Navigate to https://localhost:3000/resources
 - You should see:
   - Hero section with "Resource Library" title
   - Grid of 6 sample resources

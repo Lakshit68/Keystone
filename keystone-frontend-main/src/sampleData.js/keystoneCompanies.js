@@ -8,7 +8,7 @@ import mediatechnologies from "../components/assets/mediatechnologies.png";
 export const keystoneCompanies = [
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/technology_eo6m73.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/technology_eo6m73.png",
       emergingtechnologies,
     link: "/technology/emergingTechnology",
     title: "Keystone Emerging Technology",
@@ -17,7 +17,7 @@ export const keystoneCompanies = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/services_vfmzcb.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/services_vfmzcb.png",
       keystonetechnologies,
     link: "/technology/services",
     title: "Keystone Technology Services",
@@ -26,7 +26,7 @@ export const keystoneCompanies = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/propriter_g0gqoe.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/propriter_g0gqoe.png",
       proprietarytechnologies,
     link: "/technology/proprities",
     title: "Keystone Proprietary Solutions",
@@ -35,7 +35,7 @@ export const keystoneCompanies = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/healthcare_zykzkj.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/healthcare_zykzkj.png",
       healthcaretechnologies,
     link: "/technology/healthcare",
     title: "Keystone Healthcare",
@@ -44,7 +44,7 @@ export const keystoneCompanies = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/hospitality_dpla0f.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/hospitality_dpla0f.png",
       hospitalitytechnologies,
     link: "/technology/hospitality",
     title: "Keystone Hospitality",
@@ -53,7 +53,7 @@ export const keystoneCompanies = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/media_bs44fy.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884247/media_bs44fy.png",
       mediatechnologies,
     link: "/technology/media",
     title: "Keystone Media",

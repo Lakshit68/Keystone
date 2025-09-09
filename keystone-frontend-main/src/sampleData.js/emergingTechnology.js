@@ -5,7 +5,7 @@ import mobile from "../components/assets/mobile.png";
 export const emergingTechnologyData = [
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884313/emergingTech_xbjzih.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884313/emergingTech_xbjzih.png",
       emerging,
     title: "Emerging Technology",
     paragraphs: [
@@ -38,10 +38,10 @@ export const emergingTechnologyData = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884315/distributedAi_kbj5kw.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884315/distributedAi_kbj5kw.png",
       generativeai,
     title: "Distributed AI for Real-Time Enterprises",
-    linktext: "https://www.firstgenesis.com",
+    linktext: "httpss://www.firstgenesis.com",
     paragraphs: [
       "In a world where milliseconds shape outcomes, Keystone introduces Xenese™—a next-generation distributed AI infrastructure built for real-time enterprises. Seamlessly integrating across edge and cloud environments, Xenese™ transforms fragmented, high-volume data into autonomous, actionable intelligence at unprecedented speed and scale.",
 
@@ -54,10 +54,10 @@ export const emergingTechnologyData = [
   },
   {
     image:
-      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884295/mobileEndpoint_fi1igd.png",
+      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884295/mobileEndpoint_fi1igd.png",
       mobile,
     title: "Mobile Endpoint Protection and Secure Communications",
-    linktext: "https://aspiscyber.com",
+    linktext: "httpss://aspiscyber.com",
     paragraphs: [
       "In today’s hyper-connected world, cybersecurity is a business imperative. Keystone’s ShieldIT platform delivers enterprise-grade mobile protection and secure communications originally developed for defense and intelligence sectors—now adapted for high-risk commercial and institutional environments.",
 

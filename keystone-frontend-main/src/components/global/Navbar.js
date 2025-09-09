@@ -113,7 +113,7 @@ const Navbar = () => {
           <img
             src={
               "/logo.png"
-              // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
+              // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
             }
             alt="KeyStone Logo"
             className="h-10 cursor-pointer"
@@ -202,7 +202,7 @@ const Navbar = () => {
               <img
                 src={
                   "/logo.png"
-                  // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
+                  // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884248/logo_emf5vr.png"
                 }
                 alt="KeyStone Logo"
                 className="h-10 cursor-pointer"

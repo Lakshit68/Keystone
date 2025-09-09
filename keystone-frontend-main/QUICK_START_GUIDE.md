@@ -31,7 +31,7 @@ npm start
 
 ## 🎯 **Test the Admin Dashboard**
 
-1. **Open Admin Dashboard**: http://localhost:3000/admin
+1. **Open Admin Dashboard**: https://localhost:3000/admin
 2. **Click "Blog Management"**
 3. **Click "Add New Blog"**
 4. **Fill in the form**:
@@ -53,16 +53,16 @@ npm start
 
 ## 🔧 **API Endpoints Working**
 
-- `GET http://localhost:5001/api/blogs` - Fetch all blogs
-- `POST http://localhost:5001/api/blogs` - Create new blog
-- `GET http://localhost:5001/api/images/blog/:id` - Serve blog image
+- `GET https://keystone-backend-1.onrender.com/api/blogs` - Fetch all blogs
+- `POST https://keystone-backend-1.onrender.com/api/blogs` - Create new blog
+- `GET https://keystone-backend-1.onrender.com/api/images/blog/:id` - Serve blog image
 - Similar endpoints for galleries and resources
 
 ## 🐛 **If You Still See Errors**
 
 1. **Check MongoDB is running**: `ps aux | grep mongod`
-2. **Check server is running**: `curl http://localhost:5001/api/blogs`
-3. **Check React app**: Should be on http://localhost:3000
+2. **Check server is running**: `curl https://keystone-backend-1.onrender.com/api/blogs`
+3. **Check React app**: Should be on https://localhost:3000
 4. **Clear browser cache** and refresh
 
 ## 📊 **Current Status**

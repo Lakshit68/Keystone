@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("https")) return url;
   const base = getApiBase();
   return `${base}${url}`;
 };
@@ -34,7 +34,7 @@ const useBlogs = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:5001/api/blogs');
+        const response = await fetch('httpss:/keystone-backend-1.onrender.com/api/blogs');
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         
@@ -76,7 +76,7 @@ const BlogCard = ({ post, onClick }) => {
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
         <img
-          src={`http://localhost:5001/api/images/blog/${post.id}`}
+          src={`https://keystone-backend-1.onrender.com/api/images/blog/${post.id}`}
           alt={post.title}
           className="w-full h-56 object-cover rounded-[20px]"
           loading="lazy"

@@ -16,7 +16,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setMessage('');
     try {
-      const resp = await fetch('http://localhost:5001/api/auth/login', {
+      const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -37,7 +37,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setMessage('');
     try {
-      const resp = await fetch('http://localhost:5001/api/auth/register-initial', {
+      const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/register-initial', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
