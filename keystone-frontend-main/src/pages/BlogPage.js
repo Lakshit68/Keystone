@@ -34,7 +34,7 @@ const useBlogs = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http:/keystone-backend-1.onrender.com/api/blogs');
+        const response = await fetch('https:/keystone-backend-1.onrender.com/api/blogs');
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         
