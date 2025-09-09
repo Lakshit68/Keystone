@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getApiBase } from "../utils/apiBase";
 import { useNavigate } from "react-router-dom";
+import blogbg from "../components/assets/Blog-bg.jpg";
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
@@ -34,7 +35,7 @@ const useBlogs = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('https:/keystone-backend-1.onrender.com/api/blogs');
+        const response = await fetch('https://keystone-backend-1.onrender.com/api/blogs');
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         
@@ -100,14 +101,14 @@ export const BlogPage = () => {
 
   return (
     <div className="bg-white text-black">
-     <section className="pt-28 md:pt-3">
+      <section className="pt-28 md:pt-3">
   <div
-    className="w-full h-72 sm:h-80 md:h-[575px] lg:h-[600px] mt-0 bg-cover bg-center relative"
-    style={{ backgroundImage: "url('/blog-bg.jpg')" }}
+    className="w-full h-[600px] md:h-[575px] bg-cover bg-center relative"
+    style={{ backgroundImage: `url(${blogbg})` }}
   >
     {/* Overlay + centered text */}
     <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-      <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-black text-center drop-shadow-lg">
+      <h1 className="text-5xl md:text-7xl font-bold text-black text-center drop-shadow-lg">
         Keystone Blog
       </h1>
     </div>
