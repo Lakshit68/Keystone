@@ -13,7 +13,7 @@ export const LeadershipPage = () => {
         description="Keystone is a private entity investing in different industries such as Emerging Technologies, Hospitality, Media and expanding worldwide in healthcare with an extremely experienced high achieving leadership team that has worked together for past 20 plus years and built multiple successful companies."
         className="custom-class"
         backgroundVideo={
-          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884396/international_rqp8at.mp4"
+          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884396/international_rqp8at.mp4"
           videotwo
         }
       />

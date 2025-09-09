@@ -101,7 +101,7 @@ const ContactPage = () => {
       <div className="bg-white w-11/12 md:w-10/12 shadow-lg rounded-lg flex flex-col md:flex-row">
         <div
           style={{
-            // backgroundImage: `url(${"httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884268/contact_riaftx.png"})`,
+            // backgroundImage: `url(${"https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884268/contact_riaftx.png"})`,
             backgroundImage: `url(${contactbackground})`,
             backgroundSize: "cover",
             backgroundPosition: "center",

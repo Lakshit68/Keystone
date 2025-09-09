@@ -7,7 +7,7 @@ export const leadershipData = [
     name: "Promod Sharma",
     role: "Chief Executive Officer and Founder",
     image:
-      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg",
+      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884249/Promod_dbrgq7.jpg",
       pramod,
     description: [
       "Promod Sharma is a serial entrepreneur and visionary leader in the technology sector, known for founding and scaling high-growth, high-margin companies that deliver lasting impact. With a proven track record of innovation and execution, he brings decades of experience in building businesses that sit at the intersection of technology, security, and strategic transformation.",
@@ -23,7 +23,7 @@ export const leadershipData = [
     name: "Jyoti Mahajan",
     role: "Chief Delivery Officer and Co-founder",
     image:
-      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/Jyoti_xajjzc.png",
+      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884256/Jyoti_xajjzc.png",
       jyotileadership,
 
     description: [
@@ -39,7 +39,7 @@ export const leadershipData = [
     name: "Marcie Cheney",
     role: "Chief Strategy Officer",
     image:
-      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884251/Marcie_y8jxs3.png",
+      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884251/Marcie_y8jxs3.png",
       marcie,
 
     description: [
@@ -55,7 +55,7 @@ export const leadershipData = [
     name: "Bob Heckman",
     role: "Chief Information Officer",
     image:
-      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/Bob_t1ipof.jpg",
+      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884246/Bob_t1ipof.jpg",
       bobleadership,
 
     description: [

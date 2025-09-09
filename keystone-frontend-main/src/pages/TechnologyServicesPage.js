@@ -10,7 +10,7 @@ export const TechnologyServicesPage = () => {
       <HeroSection
         title="Keystone Technology Services"
         backgroundVideo={
-          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884277/services_sfp7p0.mp4"
+          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884277/services_sfp7p0.mp4"
           videoone
         }
       />

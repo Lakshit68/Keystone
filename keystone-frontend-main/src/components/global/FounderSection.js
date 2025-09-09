@@ -15,7 +15,7 @@ export default function FounderSection() {
           <div className="relative p-4">
             <img
               src={
-                // " httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1751135208/8cf1a706-7b81-4773-9ac9-33e268bfa01b.png"
+                // " https://res.cloudinary.com/dopvfhjhs/image/upload/v1751135208/8cf1a706-7b81-4773-9ac9-33e268bfa01b.png"
                 pramod
               }
               alt="Promod Sharma, Founder & CEO"

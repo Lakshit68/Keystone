@@ -23,7 +23,7 @@ export const HomePage = () => {
 
             className="bg-black text-white relative z-10 min-h-[60vh] flex items-center justify-center"
         backgroundVideo={
-          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884477/glitterBackground_vv5th5.mp4"
+          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884477/glitterBackground_vv5th5.mp4"
           videothree
         }
       />
@@ -107,7 +107,7 @@ export const HomePage = () => {
         paragraph="At Keystone, we believe that true success is not only measured by what we achieve, but by what we give back. "
       />
       <img
-        // src="httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884244/charity_hyy3lq.jpg"
+        // src="https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884244/charity_hyy3lq.jpg"
         src={groupwithhat}
         className="w-8/12 rounded-lg mx-auto"
       />

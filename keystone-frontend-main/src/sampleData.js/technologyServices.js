@@ -3,7 +3,7 @@ import keystonetechnologiesservices from "../components/assets/keystonetechnolog
 export const technologyServicesData = [
   {
     image:
-      // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884266/techServices_wjjads.png",
+      // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884266/techServices_wjjads.png",
       keystonetechnologiesservices,
     // title: "Keystone Technology Services",
     paragraphs: [
@@ -24,7 +24,7 @@ export const technologyServicesData = [
   },
   {
     // image:
-    //   "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884260/cyber_zlklal.png",
+    //   "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884260/cyber_zlklal.png",
     anothertitle: "Cybersecurity for a Connected World",
     paragraphs: [
       "In today’s hyper-connected digital economy, cybersecurity is the foundation of trust. Whether advising government agencies on compliance and zero-trust architecture or supporting enterprises with secure communication and threat management, we provide tailored, mission-ready cyber strategies to protect what matters most",
@@ -32,7 +32,7 @@ export const technologyServicesData = [
   },
   {
     // image:
-    //   "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884346/modernization_sh62h2.png",
+    //   "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884346/modernization_sh62h2.png",
     anothertitle: "Future-Ready Modernization",
     paragraphs: [
       "Legacy systems can no longer support the speed, complexity, and demands of modern organizations. Keystone Technology Services drives comprehensive IT modernization efforts—from system integration and cloud migration to infrastructure upgrades and digital workflows. Our approach blends technical precision with strategic insight, enabling clients to unlock value, improve service delivery, and position themselves for long-term success.",
@@ -40,7 +40,7 @@ export const technologyServicesData = [
   },
   {
     // image:
-    //   "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884277/innovation_tqgljk.png",
+    //   "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884277/innovation_tqgljk.png",
     anothertitle: "Strategic Partners in Innovation",
     paragraphs: [
       "As technology continues to evolve at an exponential pace, we stay ahead of the curve—translating next-generation advancements into real-world capabilities. Our clients benefit from Keystone’s global innovation network, cross-industry expertise, and commitment to responsible, outcome-focused deployment. We don’t just implement technology; we enable transformation, ensuring every solution aligns with business goals, regulatory requirements, and operational realities.",

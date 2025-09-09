@@ -28,7 +28,7 @@ export const CookiesPage = () => {
 
               {/* Introduction
               <p className="text-base leading-relaxed text-gray-800 mb-6">
-                Keystone International Ventures ("Keystone," "we," "us," or "our") values your privacy and is committed to protecting the personal data you share with us. This Privacy Policy explains how we collect, use, share, and protect your personal data when you use our website httpss://www.keystoneinternationalventures.com/ ("Site"), particularly when you submit information via contact forms or download requests.
+                Keystone International Ventures ("Keystone," "we," "us," or "our") values your privacy and is committed to protecting the personal data you share with us. This Privacy Policy explains how we collect, use, share, and protect your personal data when you use our website https://www.keystoneinternationalventures.com/ ("Site"), particularly when you submit information via contact forms or download requests.
               </p>
 
               <p className="text-base leading-relaxed text-gray-800 mb-8">
@@ -74,8 +74,8 @@ export const CookiesPage = () => {
                   </a>
                 </p>
                 <p className="text-gray-800">
-                  <a href="httpss://www.keystoneinternationalventures.com/" className="text-blue-600 hover:text-blue-800 underline">
-                    httpss://www.keystoneinternationalventures.com/
+                  <a href="https://www.keystoneinternationalventures.com/" className="text-blue-600 hover:text-blue-800 underline">
+                    https://www.keystoneinternationalventures.com/
                   </a>
                 </p>
               </div>

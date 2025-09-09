@@ -11,7 +11,7 @@ export const EmergingTechnologyPage = () => {
         title="Keystone"
         subtitle="Emerging Technology"
         backgroundVideo={
-          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884496/technology_qswnyo.mp4"
+          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884496/technology_qswnyo.mp4"
           videoten
         }
       />

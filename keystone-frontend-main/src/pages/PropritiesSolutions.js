@@ -11,7 +11,7 @@ export const PropritiesPage = () => {
         title="About Keystone"
         subtitle="Proprietary Solutions"
         backgroundVideo={
-          // "httpss://res.cloudinary.com/dopvfhjhs/video/upload/v1748884405/prop_tjf33f.mp4"
+          // "https://res.cloudinary.com/dopvfhjhs/video/upload/v1748884405/prop_tjf33f.mp4"
           videofive
         }
       />
@@ -21,7 +21,7 @@ export const PropritiesPage = () => {
           key={index}
           index={index}
           imageSrc={
-            // "httpss://res.cloudinary.com/dopvfhjhs/image/upload/v1748884313/propriety_tnxm7f.png"
+            // "https://res.cloudinary.com/dopvfhjhs/image/upload/v1748884313/propriety_tnxm7f.png"
             item.image
           }
           description={item.paragraphs}

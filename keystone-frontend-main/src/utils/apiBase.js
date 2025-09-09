@@ -9,8 +9,8 @@ export const getApiBase = () => {
   base = base.replace(/\/+$/, "");
 
   // If using localhost with httpss, force https to avoid SSL errors in local dev
-  if (base.startsWith("httpss://localhost:")) {
-    base = base.replace(/^httpss:\/\//i, "https://");
+  if (base.startsWith("https://localhost:")) {
+    base = base.replace(/^https:\/\//i, "https://");
   }
 
   return base;
