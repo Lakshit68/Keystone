@@ -129,6 +129,7 @@ const BlogManagement = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingBlog, setEditingBlog] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -136,6 +137,7 @@ const BlogManagement = () => {
     author: 'Admin',
     image: null
   });
+  
 
   React.useEffect(() => {
     fetchBlogs();
@@ -178,18 +180,21 @@ const BlogManagement = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-
+  
       if (response.ok) {
+        setSuccessMessage("Item saved successfully ✅");   // 👈 show message right away
+        setTimeout(() => setSuccessMessage(""), 3000);     // clear after 3 sec
         fetchBlogs();
-        setShowForm(false);
+        // keep form open until user closes manually
+        if (!editingBlog) {
+          setFormData({ title: '', description: '', content: '', author: 'Admin', image: null });
+        }
         setEditingBlog(null);
-        setFormData({ title: '', description: '', content: '', author: 'Admin', image: null });
       }
     } catch (error) {
       console.error('Error saving blog:', error);
     }
   };
-
   const handleEdit = (blog) => {
     setEditingBlog(blog);
     setFormData({
@@ -217,6 +222,12 @@ const BlogManagement = () => {
 
   return (
     <div className="p-6">
+      {successMessage && (
+        <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
+          {successMessage}
+        </div>
+      )}
+      
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Blog Management</h2>
         <button
@@ -350,6 +361,7 @@ const GalleryManagement = () => {
     description: '',
     images: []
   });
+  const [successMessage, setSuccessMessage] = useState("");
 
   React.useEffect(() => {
     fetchGalleries();
@@ -405,12 +417,16 @@ const GalleryManagement = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-
+  
       if (response.ok) {
+        setSuccessMessage("Item saved successfully ✅");   // 👈 show message
+        setTimeout(() => setSuccessMessage(""), 3000);     // 👈 clear after 3 sec
         fetchGalleries();
-        setShowForm(false);
+  
+        if (!editingGallery) {
+          setFormData({ title: '', description: '', images: [] });
+        }
         setEditingGallery(null);
-        setFormData({ title: '', description: '', images: [] });
       }
     } catch (error) {
       console.error('Error saving gallery:', error);
@@ -442,6 +458,11 @@ const GalleryManagement = () => {
 
   return (
     <div className="p-6">
+     {successMessage && (
+  <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
+    {successMessage}
+  </div>
+)}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Gallery Management</h2>
         <button
