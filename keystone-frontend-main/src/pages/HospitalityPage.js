@@ -416,15 +416,24 @@ const PropertyCard = ({ property }) => {
   ];
 
   const handleCardClick = () => {
-    // Select a random hotel website
     const randomWebsite = hotelWebsites[Math.floor(Math.random() * hotelWebsites.length)];
-    // Open in new tab
-    window.open(randomWebsite, '_blank');
+    window.open(randomWebsite, "_blank");
   };
-  
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      handleCardClick();
+    }
+  };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-lg">
+    <div
+      className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-lg cursor-pointer"
+      onClick={handleCardClick}
+      tabIndex={0}
+      role="button"
+      onKeyDown={handleKeyDown}
+    >
       <div className="relative">
         <img
           src={property.image}
@@ -437,6 +446,9 @@ const PropertyCard = ({ property }) => {
         <StarRating rating={property.rating} />
         <h3 className="text-lg font-semibold text-gray-900 mb-2">{property.name}</h3>
         <p className="text-sm text-gray-600 leading-relaxed">{property.description}</p>
+        <p className="text-xs text-blue-600 mt-2 hover:text-blue-800">
+          Click to visit website →
+        </p>
       </div>
     </div>
   );
