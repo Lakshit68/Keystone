@@ -67,7 +67,10 @@ const Paragraphs = ({ text }) => {
   return (
     <div className="space-y-4 mt-2">
       {parts.map((p, idx) => (
-        <p key={idx} className="text-base leading-7 text-gray-900">
+        <p
+          key={idx}
+          className="text-base leading-7 text-gray-900 hover:underline cursor-pointer transition-colors duration-200"
+        >
           {p}
         </p>
       ))}
@@ -113,7 +116,7 @@ export const BlogPostPage = () => {
       </section>
 
       {/* Main Content */}
-      <section className="container mx-auto px-4 mt-8">
+      <section className="container mx-auto lg:w-4/6 px-4 mt-8">
         <div className="sm:px-10 w-full">
           {loading && <p className="text-gray-600">Loading post...</p>}
           {error && <p className="text-red-700 font-semibold">{error}</p>}
@@ -125,7 +128,7 @@ export const BlogPostPage = () => {
                   <img
                     src={post.cover}
                     alt={post.title}
-                    className="w-full h-64 md:h-96 lg:h-[800px] object-cover rounded-2xl md:rounded-3xl"
+                    className="w-full h-64 md:h-96 lg:h-[400px] object-cover rounded-2xl md:rounded-3xl"
                   />
                 </div>
               )}
@@ -133,7 +136,7 @@ export const BlogPostPage = () => {
 
               {/* Content */}
               {post.content && (
-                <div className="my-7 bg-white border border-gray-200 px-6 py-6 rounded-lg shadow">
+                <div className="my-7 bg-white border-l-4 border-yellow-400 px-6 py-6 rounded-r-lg shadow hover:shadow-md transition-shadow duration-300">
                   <Paragraphs text={post.content} />
                 </div>
               )}

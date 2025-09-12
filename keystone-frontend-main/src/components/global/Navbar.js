@@ -28,10 +28,10 @@ const navItems = [
     label: "Blog",
     link: "/blog",
   },
-  {
-    label: "Resources",
-    link: "/resources",
-  },
+  // {
+  //   label: "Resources",
+  //   link: "/resources",
+  // },
   
   {
     label: "Keystone Industries",

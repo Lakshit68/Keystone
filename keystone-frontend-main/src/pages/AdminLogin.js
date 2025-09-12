@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/atoms/Button';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('admin_token');
@@ -15,6 +18,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
+    setIsLoggingIn(true);
     try {
       const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/login', {
         method: 'POST',
@@ -26,16 +30,18 @@ const AdminLogin = () => {
         setMessage(data.error || 'Login failed');
         return;
       }
-      // Do not persist token; require login on each access
       navigate('/admin', { state: { fromLogin: true } });
     } catch (err) {
       setMessage('Network error');
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
   const handleInitialRegister = async (e) => {
     e.preventDefault();
     setMessage('');
+    setIsRegistering(true);
     try {
       const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/register-initial', {
         method: 'POST',
@@ -50,6 +56,8 @@ const AdminLogin = () => {
       setMessage('Admin initialized. You can now log in.');
     } catch (err) {
       setMessage('Network error');
+    } finally {
+      setIsRegistering(false);
     }
   };
 
@@ -81,19 +89,23 @@ const AdminLogin = () => {
               required
             />
           </div>
-          <button
+          <Button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            loading={isLoggingIn}
+            disabled={isRegistering}
           >
-            Log In
-          </button>
-          <button
+            {isLoggingIn ? 'Logging In...' : 'Log In'}
+          </Button>
+          <Button
             type="button"
             onClick={handleInitialRegister}
-            className="w-full bg-gray-100 text-gray-800 py-2 rounded border mt-2 hover:bg-gray-200"
+            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 border"
+            loading={isRegistering}
+            disabled={isLoggingIn}
           >
-            First-time Setup (Register Admin)
-          </button>
+            {isRegistering ? 'Registering...' : 'First-time Setup (Register Admin)'}
+          </Button>
         </form>
       </div>
     </div>

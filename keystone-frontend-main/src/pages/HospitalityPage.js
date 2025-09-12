@@ -360,6 +360,45 @@ const StarRating = ({ rating }) => {
     </div>
   );
 };
+const hotels = [
+  {
+    id: 1,
+    name: "Ocean Crest Resort – Bali",
+    description:
+      "A luxury beachfront resort offering immersive experiences and eco-conscious design.",
+    image:
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "The Keystone Heights – New York",
+    description:
+      "A premium high-rise hotel blending modern business amenities with skyline views.",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Palmera Retreat – Marrakech",
+    description:
+      "A serene oasis merging Moroccan architecture with high-end wellness experiences.",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    rating: 4,
+  },
+  {
+    id: 4,
+    name: "Azure Bay Resort & Spa – Maldives",
+    description:
+      "An exclusive island property known for luxury villas and personalized guest services.",
+    image:
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop",
+    rating: 5,
+  },
+];
+
 
 const PropertyCard = ({ property }) => {
   // List of random hotel websites to open
@@ -382,50 +421,27 @@ const PropertyCard = ({ property }) => {
     // Open in new tab
     window.open(randomWebsite, '_blank');
   };
+  
 
   return (
-    <div
-      className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform hover:scale-105 hover:shadow-lg"
-      onClick={handleCardClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleCardClick();
-        }
-      }}
-    >
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105 hover:shadow-lg">
       <div className="relative">
-        {property.image ? (
-          <img
-            src={property.image}
-            alt={property.name}
-            className="w-full h-90 md:h-96 object-cover"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-90 md:h-96 bg-gray-200 flex items-center justify-center">
-            <span className="text-gray-500">No Image</span>
-          </div>
-        )}
+        <img
+          src={property.image}
+          alt={property.name}
+          className="w-full h-72 md:h-80 object-cover"
+          loading="lazy"
+        />
       </div>
       <div className="p-4">
-        <div className="mb-2">
-          <StarRating rating={property.rating} />
-        </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          {property.name}
-        </h3>
-        <p className="text-sm text-gray-600 leading-relaxed">
-          {property.description}
-        </p>
-        <p className="text-xs text-blue-600 mt-2 hover:text-blue-800">
-          Click to visit website →
-        </p>
+        <StarRating rating={property.rating} />
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">{property.name}</h3>
+        <p className="text-sm text-gray-600 leading-relaxed">{property.description}</p>
       </div>
     </div>
   );
 };
+
 
 export const HospitalityPage = () => {
   const { properties, loading, error } = useHospitalityPortfolio();
@@ -463,7 +479,7 @@ export const HospitalityPage = () => {
              Our Portfolio - Hotels/Resorts Section
            </h2>
 
-           {loading && (
+           {/* {loading && (
             <div className="text-center py-12">
               <p className="text-gray-600">Loading properties...</p>
             </div>
@@ -476,19 +492,25 @@ export const HospitalityPage = () => {
           )}
 
           {!loading && !error && (
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {properties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))}
-            </div>
-          )}
+            // <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            //   {properties.map((property) => (
+            //     <PropertyCard key={property.id} property={property} />
+            //   ))}
+            // </div>
+          )} */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {hotels.map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+
 
           {/* Fallback content if no properties loaded */}
-          {!loading && !error && properties.length === 0 && (
+          {/* {!loading && !error && properties.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-600">No properties available at the moment.</p>
             </div>
-          )}
+          )} */}
         </div>
       </section>
     </div>

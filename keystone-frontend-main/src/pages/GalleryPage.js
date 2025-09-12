@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getApiBase } from "../utils/apiBase";
 
 const formatDate = (isoDateString) => {
@@ -13,7 +13,6 @@ const formatDate = (isoDateString) => {
     return isoDateString;
   }
 };
-
 const resolveImageUrl = (url) => {
   if (!url) return "";
   if (url.startsWith("https")) return url;
@@ -21,105 +20,44 @@ const resolveImageUrl = (url) => {
   return `${base}${url}`;
 };
 
-const useGallery = () => {
-  const [items, setItems] = useState([]);
+
+export const GalleryPage = () => {
+  const [galleries, setGalleries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let ignore = false;
     const fetchData = async () => {
       setLoading(true);
-      setError(null);
       try {
-        const response = await fetch('https://keystone-backend-1.onrender.com/api/galleries');
-        if (!response.ok) throw new Error('Failed to fetch galleries');
+        const response = await fetch(
+          "https://keystone-backend-1.onrender.com/api/galleries"
+        );
+        if (!response.ok) throw new Error("Failed to fetch galleries");
         const data = await response.json();
-        
-        if (!ignore) {
-          const mapped = data.map((gallery) => ({
-            id: gallery._id,
-            title: gallery.title || "",
-            date: gallery.publishedAt || gallery.createdAt,
-            images: gallery.images.map((_, index) => 
+
+        const mapped = data.map((gallery) => ({
+          id: gallery._id,
+          title: gallery.title || "",
+          description: gallery.description || "",
+          date: gallery.publishedAt || gallery.createdAt,
+          images: gallery.images.map(
+            (_, index) =>
               `https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${index}`
-            ),
-          }));
-          setItems(mapped);
-        }
+          ),
+        }));
+
+        setGalleries(mapped);
       } catch (e) {
         setError(e?.message || "Failed to load gallery");
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
-    return () => {
-      ignore = true;
-    };
   }, []);
-
-  const grouped = useMemo(() => {
-    // Sort items by ID (ascending)
-    const sorted = [...items].sort((a, b) => a.id - b.id);
   
-    const top = sorted.slice(0, 2);
-    const rest = sorted.slice(2);
-  
-    return { top, rest };
-  }, [items]);
-
-  return { ...grouped, loading, error };
-};
-
-const ThumbnailRow = ({ images }) => {
-  const thumbs = (images || []).slice(0, 3);
-  if (thumbs.length === 0) return null;
-  return (
-    <div className="grid grid-cols-3 gap-2 mt-3">
-      {thumbs.map((src, idx) => (
-        <div
-          key={idx}
-          className="w-full h-24 bg-gray-100 flex items-center justify-center rounded"
-        >
-          <img
-            src={src}
-            alt="thumb"
-            className="max-h-full max-w-full object-contain rounded"
-            loading="lazy"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const GalleryCard = ({ item, withThumbs }) => {
-  const mainImage = item?.images?.[0];
-  return (
-    <div className="flex flex-col p-8">
-      <div className="w-full bg-white-100 rounded-lg flex items-center justify-center">
-        <img
-          src={mainImage}
-          alt={item?.title}
-          // className="w-full h-auto object-contain rounded-lg"
-           className="w-full h-64 md:h-80 lg:h-96 object-cover rounded-lg mx-auto"
-          loading="lazy"
-        />
-      </div>
-      {withThumbs && <ThumbnailRow images={item?.images?.slice(1)} />}
-      <div className="mt-3 mr-4 text-left">
-        <h4 className="text-black mt-1  text-sm md:text-base lg:text-lg font-medium">
-          {item?.title}
-        </h4>
-        <p className="text-sm text-gray-500">{formatDate(item?.date)}</p>
-      </div>
-    </div>
-  );
-};
-
-export const GalleryPage = () => {
-  const { top, rest, loading, error } = useGallery();
 
   return (
     <div className="bg-black text-white">
@@ -141,27 +79,65 @@ export const GalleryPage = () => {
         <div className="container mx-auto px-4 py-8 md:py-12">
           <h3 className="text-2xl md:text-3xl font-semibold mb-6">Our Gallery</h3>
 
-          {loading && <p className="text-gray-600">Loading gallery...</p>}
-          {error && <p className="text-red-600">{error}</p>}
+        {loading && <p className="text-gray-600">Loading gallery...</p>}
+        {error && <p className="text-red-600">{error}</p>}
 
-          {!loading && !error && (
-            <>
-              {/* Top cards */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {}
-                {top.map((g) => (
-                  <GalleryCard key={g.id} item={g} withThumbs />
-                ))}
-              </div>
+        {!loading && !error && (
+          <div className="grid md:grid-cols-2 gap-6">
+            {galleries.map((gallery) => (
+              <div
+                key={gallery.id}
+                className=" overflow-hidden p-4 flex flex-col"
+              >
 
-              {/* Rest of gallery */}
-              <div className="grid md:grid-cols-2 gap-8 mt-8">
-                {rest.map((g) => (
-                  <GalleryCard key={g.id} item={g} withThumbs={false} />
-                ))}
+                {/* Image Grid */}
+                
+                {/* Image Grid */}
+<div className="grid grid-flow-col grid-cols-[232px_393px] grid-cols-2 grid-rows-2 gap-3 mb-6 h-96">
+  
+  {gallery.images[1] && (
+    <div className="rounded-lg overflow-hidden  hover:-translate-y-1 transition-all duration-300">
+      <img
+        src={gallery.images[1]}
+        alt="Gallery secondary"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  )}
+  {gallery.images[2] && (
+    <div className="rounded-lg overflow-hidden  hover:-translate-y-1 transition-all duration-300">
+      <img
+        src={gallery.images[2]}
+        alt="Gallery third"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  )}
+  {gallery.images[0] && (
+    <div className="row-span-2 rounded-lg overflow-hidden x` hover:-translate-y-1 transition-all duration-300">
+      <img
+        src={gallery.images[0]}
+        alt="Gallery main"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  )}
+  
+</div>
+                {/* Title + Date */}
+                <h2 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800">
+                  {gallery.title}
+                </h2>
+                <p className="text-gray-600 text-sm font-medium mb-6">
+                  {formatDate(gallery.date)}
+                </p>
+
+
+                
               </div>
-            </>
-          )}
+            ))}
+          </div>
+        )}
         </div>
       </section>
     </div>
