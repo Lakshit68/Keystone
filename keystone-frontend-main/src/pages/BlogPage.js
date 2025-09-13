@@ -101,7 +101,7 @@ export const BlogPage = () => {
 
   return (
     <div className="bg-white text-black">
-      <section className="pt-28 md:pt-3">
+      <section className="pt-0 md:pt-3">
   <div
     className="w-full h-[600px] md:h-[575px] bg-cover bg-center relative"
     style={{ backgroundImage: `url(${blogbg})` }}

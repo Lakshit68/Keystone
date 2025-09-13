@@ -17,7 +17,6 @@ const AdminDashboard = () => {
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'blogs', label: 'Blog Management', icon: '📝' },
     { id: 'gallery', label: 'Gallery Management', icon: '🖼️' },
-    // { id: 'resources', label: 'Resources Management', icon: '📁' },
   ];
 
   const renderContent = () => {
@@ -47,16 +46,6 @@ const AdminDashboard = () => {
                   Manage Gallery
                 </button>
               </div>
-              {/* <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">Resources</h3>
-                <p className="text-3xl font-bold text-purple-600">Manage your resources</p>
-                <button
-                  onClick={() => setActiveTab('resources')}
-                  className="mt-4 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
-                >
-                  Manage Resources
-                </button>
-              </div> */}
             </div>
           </div>
         );
@@ -64,19 +53,18 @@ const AdminDashboard = () => {
         return <BlogManagement />;
       case 'gallery':
         return <GalleryManagement />;
-      // case 'resources':
-      //   return <ResourceManagement />;
       default:
         return null;
     }
   };
 
   return (
+
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-sm border-b hidden md:block">
         <div className="px-6 py-4 mt-20">
-        <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
             <h1 className="text-2xl font-bold text-pink-500">Admin Dashboard</h1>
             <div className="flex space-x-4">
               <button
@@ -87,7 +75,7 @@ const AdminDashboard = () => {
               </button>
               <button
                 onClick={() => { navigate('/admin/login'); }}
-                 className="bg-red-500 text-white px-5 py-2 rounded-md font-semibold shadow-sm hover:bg-red-600 transition"
+                className="bg-red-500 text-white px-5 py-2 rounded-md font-semibold shadow-sm hover:bg-red-600 transition"
               >
                 Logout
               </button>
@@ -97,16 +85,15 @@ const AdminDashboard = () => {
       </div>
 
       <div className="flex flex-col md:flex-row gap-2 md:gap-4">
-        {/* Sidebar */}
-        <div className="w-full md:w-56 bg-white shadow-sm min-h-0 md:min-h-screen">
+        {/* Sidebar - hidden on mobile */}
+        <div className="hidden md:block w-full md:w-56 bg-white shadow-sm min-h-0 md:min-h-screen">
           <nav className="mt-6">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full text-left px-4 md:px-6 py-3 flex items-center space-x-3 hover:bg-gray-50 ${
-                  activeTab === item.id ? 'bg-blue-50 border-r-2 border-blue-500 text-blue-700' : 'text-gray-700'
-                }`}
+                className={`w-full text-left px-4 md:px-6 py-3 flex items-center space-x-3 hover:bg-gray-50 ${activeTab === item.id ? 'bg-blue-50 border-r-2 border-blue-500 text-blue-700' : 'text-gray-700'
+                  }`}
               >
                 <span className="text-xl">{item.icon}</span>
                 <span className="font-medium">{item.label}</span>
@@ -116,16 +103,16 @@ const AdminDashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-4 md:p-6">
+        <div className="flex-1 p-4 md:p-6 mt-10 md:mt-0">
           {renderContent()}
         </div>
       </div>
+
     </div>
   );
 };
 
-// Blog Management Component
-const BlogManagement = () => {
+function BlogManagement() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -140,9 +127,9 @@ const BlogManagement = () => {
     author: 'Admin',
     image: null
   });
-  
 
-  React.useEffect(() => {
+
+  useEffect(() => {
     fetchBlogs();
   }, []);
 
@@ -173,18 +160,18 @@ const BlogManagement = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const url = editingBlog 
+      const url = editingBlog
         ? `https://keystone-backend-1.onrender.com/api/blogs/${editingBlog._id}`
         : 'https://keystone-backend-1.onrender.com/api/blogs';
-      
+
       const method = editingBlog ? 'PUT' : 'POST';
-      
+
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-  
+
       if (response.ok) {
         setSuccessMessage("Item saved successfully ✅");
         setTimeout(() => setSuccessMessage(""), 3000);
@@ -230,100 +217,132 @@ const BlogManagement = () => {
 
   return (
     <div className="p-6">
-      {successMessage && (
-        <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
-          {successMessage}
-        </div>
-      )}
-      
+
+
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Blog Management</h2>
+        <h2 className="text-md w-full md:text-2xl font-bold text-gray-900 whitespace-nowrap">Blog Management</h2>
         <Button
           onClick={() => setShowForm(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 text-sm md:px-6 md:py-2 md:text-base whitespace-nowrap"
         >
-          Add New Blog
+          Add New
         </Button>
       </div>
 
       {showForm && (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold mb-4">
-            {editingBlog ? 'Edit Blog' : 'Add New Blog'}
-          </h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Title</label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Description</label>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                rows="3"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text sm font-medium text-gray-700">Content</label>
-              <textarea
-                value={formData.content}
-                onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                rows="6"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Author</label>
-              <input
-                type="text"
-                value={formData.author}
-                onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="mt-1 block w-full"
-                required={!editingBlog}
-              />
-            </div>
-            <div className="flex space-x-4">
-              <Button
-                type="submit"
-                className="bg-green-500 hover:bg-green-600 text-white"
-                loading={isSubmitting}
-              >
-                {editingBlog ? 'Update' : 'Create'} Blog
-              </Button>
-              <Button
-                type="button"
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop with blur effect */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={() => {
+              setShowForm(false);
+              setEditingBlog(null);
+              setFormData({ title: '', description: '', content: '', author: 'Admin', image: null });
+            }}
+          ></div>
+
+          {/* Modal content */}
+          <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-900">
+                {editingBlog ? 'Edit Blog' : 'Add New Blog'}
+              </h3>
+              <button
                 onClick={() => {
                   setShowForm(false);
                   setEditingBlog(null);
                   setFormData({ title: '', description: '', content: '', author: 'Admin', image: null });
                 }}
-                className="bg-gray-500 hover:bg-gray-600 text-white"
-                disabled={isSubmitting}
+                className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
               >
-                Cancel
-              </Button>
+                ×
+              </button>
             </div>
-          </form>
+
+            {/* Modal body */}
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter blog title"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="3"
+                    placeholder="Enter blog description"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                  <textarea
+                    value={formData.content}
+                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="6"
+                    placeholder="Enter blog content"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
+                  <input
+                    type="text"
+                    value={formData.author}
+                    onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter author name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required={!editingBlog}
+                  />
+                </div>
+
+                {/* Modal footer */}
+                <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setShowForm(false);
+                      setEditingBlog(null);
+                      setFormData({ title: '', description: '', content: '', author: 'Admin', image: null });
+                    }}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-md"
+                    disabled={isSubmitting}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md"
+                    loading={isSubmitting}
+                  >
+                    {editingBlog ? 'Update Blog' : 'Create Blog'}
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       )}
 
@@ -362,8 +381,7 @@ const BlogManagement = () => {
   );
 };
 
-// Gallery Management Component
-const GalleryManagement = () => {
+function GalleryManagement() {
   const [galleries, setGalleries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -377,7 +395,7 @@ const GalleryManagement = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchGalleries();
   }, []);
 
@@ -385,9 +403,16 @@ const GalleryManagement = () => {
     try {
       const response = await fetch('https://keystone-backend-1.onrender.com/api/galleries');
       const data = await response.json();
-      setGalleries(data);
+      if (Array.isArray(data)) {
+        setGalleries(data);
+      } else if (data.galleries && Array.isArray(data.galleries)) {
+        setGalleries(data.galleries);
+      } else {
+        setGalleries([]);
+      }
     } catch (error) {
       console.error('Error fetching galleries:', error);
+      setGalleries([]);
     } finally {
       setLoading(false);
     }
@@ -426,23 +451,23 @@ const GalleryManagement = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const url = editingGallery 
+      const url = editingGallery
         ? `https://keystone-backend-1.onrender.com/api/galleries/${editingGallery._id}`
         : 'https://keystone-backend-1.onrender.com/api/galleries';
-      
+
       const method = editingGallery ? 'PUT' : 'POST';
-      
+
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-  
+
       if (response.ok) {
         setSuccessMessage("Item saved successfully ✅");
         setTimeout(() => setSuccessMessage(""), 3000);
         fetchGalleries();
-  
+
         if (!editingGallery) {
           setFormData({ title: '', description: '', images: [] });
         }
@@ -460,7 +485,10 @@ const GalleryManagement = () => {
     setFormData({
       title: gallery.title,
       description: gallery.description,
-      images: []
+      images: gallery.images.map((img, index) => ({
+        data: `https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${index}`,
+        contentType: img.contentType || 'image/jpeg'
+      }))
     });
     setShowForm(true);
   };
@@ -483,405 +511,206 @@ const GalleryManagement = () => {
 
   return (
     <div className="p-6">
-     {successMessage && (
-  <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
-    {successMessage}
-  </div>
-)}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Gallery Management</h2>
+      {successMessage && (
+        <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
+          {successMessage}
+        </div>
+      )}
+      <div className="flex items-center justify-between mb-6 mr-2">
+        <h2 className="text-md w-full md:text-2xl font-bold text-gray-900 whitespace-nowrap ">
+          Gallery Management
+        </h2>
         <Button
           onClick={() => setShowForm(true)}
-          className="bg-green-500 hover:bg-green-600 text-white"
-        >
-          Add New Gallery
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 text-sm md:px-6 md:py-2 md:text-base whitespace-nowrap">
+          Add New
         </Button>
       </div>
 
       {showForm && (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold mb-4">
-            {editingGallery ? 'Edit Gallery' : 'Add New Gallery'}
-          </h3>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Title</label>
-              <input
-                type="text"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Description</label>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-                rows="3"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Images</label>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImageChange}
-                className="mt-1 block w-full"
-                required={!editingGallery}
-              />
-              {formData.images.length > 0 && (
-                <div className="mt-2 grid grid-cols-2 grid-rows-2 gap-2 h-36">
-                  {/* 3-image grid preview: 1 large (row-span-2), 2 small */}
-                  {formData.images.slice(0, 3).map((img, index) => (
-                    <div
-                      key={index}
-                      className={
-                        index === 0
-                          ? "row-span-2 rounded-lg overflow-hidden relative"
-                          : "rounded-lg overflow-hidden relative"
-                      }
-                      style={index === 0 ? { gridRow: "span 2 / span 2" } : {}}
-                    >
-                      <img
-                        src={img.data}
-                        alt={`Preview ${index}`}
-                        className="w-full h-full object-cover"
-                        style={index === 0 ? { height: "100%" } : {}}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="flex space-x-4">
-              <Button
-                type="submit"
-                className="bg-green-500 hover:bg-green-600 text-white"
-                loading={isSubmitting}
-              >
-                {editingGallery ? 'Update' : 'Create'} Gallery
-              </Button>
-              <Button
-                type="button"
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop with blur effect */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={() => {
+              setShowForm(false);
+              setEditingGallery(null);
+              setFormData({ title: '', description: '', images: [] });
+            }}
+          ></div>
+
+          {/* Modal content */}
+          <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-900">
+                {editingGallery ? 'Edit Gallery' : 'Add New Gallery'}
+              </h3>
+              <button
                 onClick={() => {
                   setShowForm(false);
                   setEditingGallery(null);
                   setFormData({ title: '', description: '', images: [] });
                 }}
-                className="bg-gray-500 hover:bg-gray-600 text-white"
-                disabled={isSubmitting}
+                className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
               >
-                Cancel
-              </Button>
+                ×
+              </button>
             </div>
-          </form>
+
+            {/* Modal body */}
+            <div className="p-6">
+              {successMessage && (
+                <div className="mb-4 p-3 rounded bg-green-100 text-green-700 font-medium">
+                  {successMessage}
+                </div>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    placeholder="Enter gallery title"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    rows="3"
+                    placeholder="Enter gallery description"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Images (up to 3)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    required={!editingGallery}
+                  />
+                  {formData.images.length > 0 && (
+                    <div className="mt-2 grid grid-cols-2 grid-rows-2 gap-2 h-36">
+                      {/* 3-image grid preview: 1 large (row-span-2), 2 small */}
+                      {formData.images.slice(0, 3).map((img, index) => (
+                        <div
+                          key={index}
+                          className={
+                            index === 0
+                              ? "row-span-2 rounded-lg overflow-hidden relative"
+                              : "rounded-lg overflow-hidden relative"
+                          }
+                          style={index === 0 ? { gridRow: "span 2 / span 2" } : {}}
+                        >
+                          <img
+                            src={img.data}
+                            alt={`Preview ${index}`}
+                            className="w-full h-full object-cover"
+                            style={index === 0 ? { height: "100%" } : {}}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Modal footer */}
+                <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      setShowForm(false);
+                      setEditingGallery(null);
+                      setFormData({ title: '', description: '', images: [] });
+                    }}
+                    className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-md"
+                    disabled={isSubmitting}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md"
+                    loading={isSubmitting}
+                  >
+                    {editingGallery ? 'Update Gallery' : 'Create Gallery'}
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleries.map((gallery) => (
-          <div key={gallery._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            {gallery.images.length > 0 && (
-              <div className="grid grid-cols-2 grid-rows-2 gap-2 h-48 w-full">
-                {gallery.images.slice(0, 3).map((img, idx) => (
-                  <div
-                    key={idx}
-                    className={
-                      idx === 0
-                        ? "row-span-2 rounded-lg overflow-hidden"
-                        : "rounded-lg overflow-hidden"
-                    }
-                    style={idx === 0 ? { gridRow: "span 2 / span 2" } : {}}
+        {Array.isArray(galleries) && galleries.length > 0 ? (
+          galleries.map((gallery) => (
+            <div key={gallery._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+              {gallery.images.length > 0 && (
+                <div className="grid grid-cols-2 grid-rows-2 gap-2 h-48 w-full">
+                  {gallery.images.slice(0, 3).map((img, idx) => (
+                    <div
+                      key={idx}
+                      className={
+                        idx === 0
+                          ? "row-span-2 rounded-lg overflow-hidden"
+                          : "rounded-lg overflow-hidden"
+                      }
+                      style={idx === 0 ? { gridRow: "span 2 / span 2" } : {}}
+                    >
+                      <img
+                        src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
+                        alt={gallery.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{gallery.title}</h3>
+                <p className="text-gray-600 text-sm mb-2">{gallery.description}</p>
+                <p className="text-gray-500 text-xs mb-4">{gallery.images.length} images</p>
+                <div className="flex space-x-2">
+                  <Button
+                    onClick={() => handleEdit(gallery)}
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm"
                   >
-                    <img
-                      src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
-                      alt={gallery.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{gallery.title}</h3>
-              <p className="text-gray-600 text-sm mb-2">{gallery.description}</p>
-              <p className="text-gray-500 text-xs mb-4">{gallery.images.length} images</p>
-              <div className="flex space-x-2">
-                <Button
-                  onClick={() => handleEdit(gallery)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => handleDelete(gallery._id)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-sm"
-                  loading={deletingId === gallery._id}
-                  disabled={deletingId !== null && deletingId !== gallery._id}
-                >
-                  {deletingId === gallery._id ? 'Deleting...' : 'Delete'}
-                </Button>
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(gallery._id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-sm"
+                    loading={deletingId === gallery._id}
+                    disabled={deletingId !== null && deletingId !== gallery._id}
+                  >
+                    {deletingId === gallery._id ? 'Deleting...' : 'Delete'}
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-gray-600">No galleries available</p>
+        )}
       </div>
     </div>
   );
 };
-
-// Resource Management Component
-// const ResourceManagement = () => {
-//   const [resources, setResources] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [showForm, setShowForm] = useState(false);
-//   const [editingResource, setEditingResource] = useState(null);
-//   const [formData, setFormData] = useState({
-//     title: '',
-//     description: '',
-//     category: '',
-//     image: null,
-//     file: null
-//   });
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [deletingId, setDeletingId] = useState(null);
-
-//   React.useEffect(() => {
-//     fetchResources();
-//   }, []);
-
-//   const fetchResources = async () => {
-//     try {
-//       const response = await fetch('https://keystone-backend-1.onrender.com/api/resources');
-//       const data = await response.json();
-//       setResources(data);
-//     } catch (error) {
-//       console.error('Error fetching resources:', error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = (e) => {
-//         setFormData({ ...formData, image: e.target.result });
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   const handleFileChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = (e) => {
-//         setFormData({ 
-//           ...formData, 
-//           file: e.target.result,
-//           fileName: file.name,
-//           fileType: file.type
-//         });
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-//     try {
-//       const url = editingResource 
-//         ? `https://keystone-backend-1.onrender.com/api/resources/${editingResource._id}`
-//         : 'https://keystone-backend-1.onrender.com/api/resources';
-      
-//       const method = editingResource ? 'PUT' : 'POST';
-      
-//       const response = await fetch(url, {
-//         method,
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(formData)
-//       });
-
-//       if (response.ok) {
-//         fetchResources();
-//         setShowForm(false);
-//         setEditingResource(null);
-//         setFormData({ title: '', description: '', category: '', image: null, file: null });
-//       }
-//     } catch (error) {
-//       console.error('Error saving resource:', error);
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-
-//   const handleEdit = (resource) => {
-//     setEditingResource(resource);
-//     setFormData({
-//       title: resource.title,
-//       description: resource.description,
-//       category: resource.category,
-//       image: null,
-//       file: null
-//     });
-//     setShowForm(true);
-//   };
-
-//   const handleDelete = async (id) => {
-//     if (window.confirm('Are you sure you want to delete this resource?')) {
-//       setDeletingId(id);
-//       try {
-//         await fetch(`https://keystone-backend-1.onrender.com/api/resources/${id}`, { method: 'DELETE' });
-//         fetchResources();
-//       } catch (error) {
-//         console.error('Error deleting resource:', error);
-//       } finally {
-//         setDeletingId(null);
-//       }
-//     }
-//   };
-
-//   if (loading) return <div className="p-6">Loading...</div>;
-
-//   return (
-//     <div className="p-6">
-//       <div className="flex justify-between items-center mb-6">
-//         <h2 className="text-2xl font-bold text-gray-900">Resource Management</h2>
-//         <Button
-//           onClick={() => setShowForm(true)}
-//           className="bg-purple-500 hover:bg-purple-600 text-white"
-//         >
-//           Add New Resource
-//         </Button>
-//       </div>
-
-//       {showForm && (
-//         <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-//           <h3 className="text-lg font-semibold mb-4">
-//             {editingResource ? 'Edit Resource' : 'Add New Resource'}
-//           </h3>
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Title</label>
-//               <input
-//                 type="text"
-//                 value={formData.title}
-//                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-//                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-//                 required
-//               />
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Description</label>
-//               <textarea
-//                 value={formData.description}
-//                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-//                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-//                 rows="3"
-//                 required
-//               />
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Category</label>
-//               <input
-//                 type="text"
-//                 value={formData.category}
-//                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-//                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-//               />
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Image</label>
-//               <input
-//                 type="file"
-//                 accept="image/*"
-//                 onChange={handleImageChange}
-//                 className="mt-1 block w-full"
-//                 required={!editingResource}
-//               />
-//             </div>
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">File</label>
-//               <input
-//                 type="file"
-//                 onChange={handleFileChange}
-//                 className="mt-1 block w-full"
-//                 required={!editingResource}
-//               />
-//             </div>
-//             <div className="flex space-x-4">
-//               <Button
-//                 type="submit"
-//                 className="bg-purple-500 hover:bg-purple-600 text-white"
-//                 loading={isSubmitting}
-//               >
-//                 {editingResource ? 'Update' : 'Create'} Resource
-//               </Button>
-//               <Button
-//                 type="button"
-//                 onClick={() => {
-//                   setShowForm(false);
-//                   setEditingResource(null);
-//                   setFormData({ title: '', description: '', category: '', image: null, file: null });
-//                 }}
-//                 className="bg-gray-500 hover:bg-gray-600 text-white"
-//                 disabled={isSubmitting}
-//               >
-//                 Cancel
-//               </Button>
-//             </div>
-//           </form>
-//         </div>
-//       )}
-
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//         {resources.map((resource) => (
-//           <div key={resource._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-//             <img
-//               src={`https://keystone-backend-1.onrender.com/api/images/resource/${resource._id}`}
-//               alt={resource.title}
-//               className="w-full h-48 object-cover"
-//             />
-//             <div className="p-4">
-//               <h3 className="text-lg font-semibold text-gray-900 mb-2">{resource.title}</h3>
-//               <p className="text-gray-600 text-sm mb-2">{resource.description}</p>
-//               <p className="text-gray-500 text-xs mb-4">{resource.category}</p>
-//               <div className="flex space-x-2">
-//                 <Button
-//                   onClick={() => handleEdit(resource)}
-//                   className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm"
-//                 >
-//                   Edit
-//                 </Button>
-//                 <Button
-//                   onClick={() => handleDelete(resource._id)}
-//                   className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-sm"
-//                   loading={deletingId === resource._id}
-//                   disabled={deletingId !== null && deletingId !== resource._id}
-//                 >
-//                   {deletingId === resource._id ? 'Deleting...' : 'Delete'}
-//                 </Button>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
 
 export default AdminDashboard;

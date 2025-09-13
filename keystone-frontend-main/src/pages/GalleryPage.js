@@ -62,7 +62,7 @@ export const GalleryPage = () => {
   return (
     <div className="bg-black text-white">
       {/* Hero Section */}
-      <section className="pt-28 pb-16 md:pt-32 md:pb-20 container mx-auto px-4">
+      <section className="pt-28 pb-16 h-full md:pt-32 md:pb-20 container mx-auto px-4">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold">Keystone</h1>
           <p className="text-xl md:text-2xl mt-2">Moments That Define Our Mission</p>
@@ -79,7 +79,7 @@ export const GalleryPage = () => {
         <div className="container mx-auto px-4 py-8 md:py-12">
           <h3 className="text-2xl md:text-3xl font-semibold mb-6">Our Gallery</h3>
 
-        {loading && <p className="text-gray-600">Loading gallery...</p>}
+        {loading && <p className="text-gray-600">Loading Gallery...</p>}
         {error && <p className="text-red-600">{error}</p>}
 
         {!loading && !error && (
@@ -93,8 +93,17 @@ export const GalleryPage = () => {
                 {/* Image Grid */}
                 
                 {/* Image Grid */}
-<div className="grid grid-flow-col grid-cols-[232px_393px] grid-cols-2 grid-rows-2 gap-3 mb-6 h-96">
-  
+                {/* <div className="grid grid-flow-col grid-cols-[232px_393px] grid-cols-2 grid-rows-2 gap-3 mb-6 h-96"> */}
+               <div className=" grid grid-cols-2 grid-rows-2 gap-2 h-48 md:h-96 w-full grid-flow-col mt-10 mb-10">
+               {gallery.images[0] && (
+    <div className="row-span-2 rounded-lg overflow-hidden x` hover:-translate-y-1 transition-all duration-300">
+      <img
+        src={gallery.images[0]}
+        alt="Gallery main"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  )}
   {gallery.images[1] && (
     <div className="rounded-lg overflow-hidden  hover:-translate-y-1 transition-all duration-300">
       <img
@@ -113,7 +122,7 @@ export const GalleryPage = () => {
       />
     </div>
   )}
-  {gallery.images[0] && (
+  {/* {gallery.images[0] && (
     <div className="row-span-2 rounded-lg overflow-hidden x` hover:-translate-y-1 transition-all duration-300">
       <img
         src={gallery.images[0]}
@@ -122,7 +131,7 @@ export const GalleryPage = () => {
       />
     </div>
   )}
-  
+   */}
 </div>
                 {/* Title + Date */}
                 <h2 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800">
