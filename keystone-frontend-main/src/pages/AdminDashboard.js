@@ -242,7 +242,7 @@ function BlogManagement() {
           ></div>
 
           {/* Modal content */}
-          <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="relative bg-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto max-h-[90vh] overflow-y-auto p-4">
             {/* Modal header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h3 className="text-xl font-semibold text-gray-900">
@@ -468,9 +468,12 @@ function GalleryManagement() {
         setTimeout(() => setSuccessMessage(""), 3000);
         fetchGalleries();
 
-        if (!editingGallery) {
-          setFormData({ title: '', description: '', images: [] });
-        }
+        // if (!editingGallery) {
+        //   setFormData({ title: '', description: '', images: [] });
+        // }
+        // Always reset form, close modal, and clear editingGallery after save
+        setFormData({ title: '', description: '', images: [] });
+        setShowForm(false);
         setEditingGallery(null);
       }
     } catch (error) {
@@ -540,7 +543,7 @@ function GalleryManagement() {
           ></div>
 
           {/* Modal content */}
-          <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="relative bg-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg md:max-w-2xl mx-auto max-h-[90vh] overflow-y-auto p-4">
             {/* Modal header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h3 className="text-xl font-semibold text-gray-900">
@@ -657,58 +660,88 @@ function GalleryManagement() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.isArray(galleries) && galleries.length > 0 ? (
-          galleries.map((gallery) => (
-            <div key={gallery._id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              {gallery.images.length > 0 && (
-                <div className="grid grid-cols-2 grid-rows-2 gap-2 h-48 w-full">
-                  {gallery.images.slice(0, 3).map((img, idx) => (
-                    <div
-                      key={idx}
-                      className={
-                        idx === 0
-                          ? "row-span-2 rounded-lg overflow-hidden"
-                          : "rounded-lg overflow-hidden"
-                      }
-                      style={idx === 0 ? { gridRow: "span 2 / span 2" } : {}}
-                    >
-                      <img
-                        src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
-                        alt={gallery.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{gallery.title}</h3>
-                <p className="text-gray-600 text-sm mb-2">{gallery.description}</p>
-                <p className="text-gray-500 text-xs mb-4">{gallery.images.length} images</p>
-                <div className="flex space-x-2">
-                  <Button
-                    onClick={() => handleEdit(gallery)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => handleDelete(gallery._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-sm"
-                    loading={deletingId === gallery._id}
-                    disabled={deletingId !== null && deletingId !== gallery._id}
-                  >
-                    {deletingId === gallery._id ? 'Deleting...' : 'Delete'}
-                  </Button>
-                </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {Array.isArray(galleries) && galleries.length > 0 ? (
+    galleries.map((gallery) => (
+      <div key={gallery._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+        {gallery.images.length > 0 && (
+          <div className="w-full h-48">
+            {gallery.images.length === 1 && (
+              // Single image full block
+              <div className="w-full h-full">
+                <img
+                  src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/0`}
+                  alt={gallery.title}
+                  className="w-full h-full object-cover rounded-lg"
+                />
               </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-600">No galleries available</p>
+            )}
+
+            {gallery.images.length === 2 && (
+              // Two images split equally
+              <div className="grid grid-cols-2 gap-2 h-full">
+                {gallery.images.slice(0, 2).map((_, idx) => (
+                  <img
+                    key={idx}
+                    src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
+                    alt={`${gallery.title}-${idx}`}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                ))}
+              </div>
+            )}
+
+            {gallery.images.length >= 3 && (
+              // Three-image layout (current one)
+              <div className="grid grid-cols-2 grid-rows-2 gap-2 h-full">
+                {gallery.images.slice(0, 3).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={
+                      idx === 0
+                        ? "row-span-2 rounded-lg overflow-hidden"
+                        : "rounded-lg overflow-hidden"
+                    }
+                  >
+                    <img
+                      src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
+                      alt={`${gallery.title}-${idx}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         )}
+
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">{gallery.title}</h3>
+          <p className="text-gray-600 text-sm mb-2">{gallery.description}</p>
+          <p className="text-gray-500 text-xs mb-4">{gallery.images.length} images</p>
+          <div className="flex space-x-2">
+            <Button
+              onClick={() => handleEdit(gallery)}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-sm"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => handleDelete(gallery._id)}
+              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-sm"
+              loading={deletingId === gallery._id}
+              disabled={deletingId !== null && deletingId !== gallery._id}
+            >
+              {deletingId === gallery._id ? 'Deleting...' : 'Delete'}
+            </Button>
+          </div>
+        </div>
       </div>
+    ))
+  ) : (
+    <p className="text-gray-600">No galleries available</p>
+  )}
+</div>
     </div>
   );
 };

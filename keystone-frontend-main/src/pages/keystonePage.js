@@ -9,7 +9,7 @@ export const KeystonePage = () => {
         paragraph="Keystone International Ventures is a dynamic global firm at the forefront of strategic investment, innovation, and transformative business growth across key industries. "
       />
       <div className="flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 ml-11 w-11/12 md:w-9/12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center p-8 w-11/12 md:w-9/12">
         {keystoneCompanies.map((team, index) => (
           <InfoImageSection
             key={index}

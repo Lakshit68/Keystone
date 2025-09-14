@@ -91,48 +91,62 @@ export const GalleryPage = () => {
               >
 
                 {/* Image Grid */}
+                                {/* Responsive Image Grid */}
+                                <div className="w-full mt-10 mb-10">
+                  {gallery.images.length === 1 && (
+                    <div className="w-full h-48 md:h-96">
+                      <img
+                        src={gallery.images[0]}
+                        alt="Gallery"
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                  )}
+                  {gallery.images.length === 2 && (
+                    <div className="grid grid-cols-2 gap-2 h-48 md:h-96">
+                      <div className="rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                        <img
+                          src={gallery.images[0]}
+                          alt="Gallery 1"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                        <img
+                          src={gallery.images[1]}
+                          alt="Gallery 2"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {gallery.images.length >= 3 && (
+                    <div className="grid grid-cols-2 grid-rows-2 gap-2 h-48 md:h-96">
+                      <div className="row-span-2 rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                        <img
+                          src={gallery.images[0]}
+                          alt="Gallery main"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                        <img
+                          src={gallery.images[1]}
+                          alt="Gallery secondary"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="rounded-lg overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                        <img
+                          src={gallery.images[2]}
+                          alt="Gallery third"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
                 
-                {/* Image Grid */}
-                {/* <div className="grid grid-flow-col grid-cols-[232px_393px] grid-cols-2 grid-rows-2 gap-3 mb-6 h-96"> */}
-               <div className=" grid grid-cols-2 grid-rows-2 gap-2 h-48 md:h-96 w-full grid-flow-col mt-10 mb-10">
-               {gallery.images[0] && (
-    <div className="row-span-2 rounded-lg overflow-hidden x` hover:-translate-y-1 transition-all duration-300">
-      <img
-        src={gallery.images[0]}
-        alt="Gallery main"
-        className="w-full h-full object-cover"
-      />
-    </div>
-  )}
-  {gallery.images[1] && (
-    <div className="rounded-lg overflow-hidden  hover:-translate-y-1 transition-all duration-300">
-      <img
-        src={gallery.images[1]}
-        alt="Gallery secondary"
-        className="w-full h-full object-cover"
-      />
-    </div>
-  )}
-  {gallery.images[2] && (
-    <div className="rounded-lg overflow-hidden  hover:-translate-y-1 transition-all duration-300">
-      <img
-        src={gallery.images[2]}
-        alt="Gallery third"
-        className="w-full h-full object-cover"
-      />
-    </div>
-  )}
-  {/* {gallery.images[0] && (
-    <div className="row-span-2 rounded-lg overflow-hidden x` hover:-translate-y-1 transition-all duration-300">
-      <img
-        src={gallery.images[0]}
-        alt="Gallery main"
-        className="w-full h-full object-cover"
-      />
-    </div>
-  )}
-   */}
-</div>
                 {/* Title + Date */}
                 <h2 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800">
                   {gallery.title}
