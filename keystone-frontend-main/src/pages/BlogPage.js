@@ -74,6 +74,7 @@ const useBlogs = () => {
 
 const BlogCard = ({ post, onClick }) => {
   console.log(post)
+  const serverUrl = process.env.REACT_APP_BACKEND_URL;
   return (
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
