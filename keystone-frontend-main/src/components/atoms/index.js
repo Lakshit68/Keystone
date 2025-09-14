@@ -1,2 +1,3 @@
 import Button from "./Button";
-export { Button };
+import LoadingSpinner from "./LoadingSpinner";
+export { Button, LoadingSpinner };

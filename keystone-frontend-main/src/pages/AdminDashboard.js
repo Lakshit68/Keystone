@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Button from '../components/atoms/Button';
+import { Button, LoadingSpinner } from '../components/atoms';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const AdminDashboard = () => {
     { id: 'blogs', label: 'Blog Management', icon: '📝' },
     { id: 'gallery', label: 'Gallery Management', icon: '🖼️' },
   ];
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   const renderContent = () => {
     switch (activeTab) {
@@ -127,6 +128,7 @@ function BlogManagement() {
     author: 'Admin',
     image: null
   });
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
 
   useEffect(() => {
@@ -135,7 +137,7 @@ function BlogManagement() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('https://keystone-backend-1.onrender.com/api/blogs');
+      const response = await fetch(`${serverUrl}/api/blogs`);
       const data = await response.json();
       setBlogs(data);
     } catch (error) {
@@ -161,8 +163,8 @@ function BlogManagement() {
     setIsSubmitting(true);
     try {
       const url = editingBlog
-        ? `https://keystone-backend-1.onrender.com/api/blogs/${editingBlog._id}`
-        : 'https://keystone-backend-1.onrender.com/api/blogs';
+        ? `${serverUrl}/api/blogs/${editingBlog._id}`
+        : `${serverUrl}/api/blogs`;
 
       const method = editingBlog ? 'PUT' : 'POST';
 
@@ -203,7 +205,7 @@ function BlogManagement() {
     if (window.confirm('Are you sure you want to delete this blog?')) {
       setDeletingId(id);
       try {
-        await fetch(`https://keystone-backend-1.onrender.com/api/blogs/${id}`, { method: 'DELETE' });
+        await fetch(`${serverUrl}/api/blogs/${id}`, { method: 'DELETE' });
         fetchBlogs();
       } catch (error) {
         console.error('Error deleting blog:', error);
@@ -213,7 +215,7 @@ function BlogManagement() {
     }
   };
 
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return <LoadingSpinner message="Loading blog posts..." />;
 
   return (
     <div className="p-6">
@@ -230,7 +232,7 @@ function BlogManagement() {
       </div>
 
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
           {/* Backdrop with blur effect */}
           <div
             className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
@@ -350,7 +352,7 @@ function BlogManagement() {
         {blogs.map((blog) => (
           <div key={blog._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <img
-              src={`https://keystone-backend-1.onrender.com/api/images/blog/${blog._id}`}
+              src={`${serverUrl}/api/images/blog/${blog._id}`}
               alt={blog.title}
               className="w-full h-48 object-cover"
             />
@@ -401,7 +403,7 @@ function GalleryManagement() {
 
   const fetchGalleries = async () => {
     try {
-      const response = await fetch('https://keystone-backend-1.onrender.com/api/galleries');
+      const response = await fetch(`${serverUrl}/api/galleries`);
       const data = await response.json();
       if (Array.isArray(data)) {
         setGalleries(data);
@@ -452,8 +454,8 @@ function GalleryManagement() {
     setIsSubmitting(true);
     try {
       const url = editingGallery
-        ? `https://keystone-backend-1.onrender.com/api/galleries/${editingGallery._id}`
-        : 'https://keystone-backend-1.onrender.com/api/galleries';
+        ? `${serverUrl}/api/galleries/${editingGallery._id}`
+        : `${serverUrl}/api/galleries`;
 
       const method = editingGallery ? 'PUT' : 'POST';
 
@@ -489,7 +491,7 @@ function GalleryManagement() {
       title: gallery.title,
       description: gallery.description,
       images: gallery.images.map((img, index) => ({
-        data: `https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${index}`,
+        data: `${serverUrl}/api/images/gallery/${gallery._id}/${index}`,
         contentType: img.contentType || 'image/jpeg'
       }))
     });
@@ -500,7 +502,7 @@ function GalleryManagement() {
     if (window.confirm('Are you sure you want to delete this gallery?')) {
       setDeletingId(id);
       try {
-        await fetch(`https://keystone-backend-1.onrender.com/api/galleries/${id}`, { method: 'DELETE' });
+        await fetch(`${serverUrl}/api/galleries/${id}`, { method: 'DELETE' });
         fetchGalleries();
       } catch (error) {
         console.error('Error deleting gallery:', error);
@@ -510,7 +512,7 @@ function GalleryManagement() {
     }
   };
 
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return <LoadingSpinner message="Loading gallery items..." />;
 
   return (
     <div className="p-6">
@@ -670,7 +672,7 @@ function GalleryManagement() {
               // Single image full block
               <div className="w-full h-full">
                 <img
-                  src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/0`}
+                  src={`${serverUrl}/api/images/gallery/${gallery._id}/0`}
                   alt={gallery.title}
                   className="w-full h-full object-cover rounded-lg"
                 />
@@ -683,7 +685,7 @@ function GalleryManagement() {
                 {gallery.images.slice(0, 2).map((_, idx) => (
                   <img
                     key={idx}
-                    src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
+                    src={`${serverUrl}/api/images/gallery/${gallery._id}/${idx}`}
                     alt={`${gallery.title}-${idx}`}
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -704,7 +706,7 @@ function GalleryManagement() {
                     }
                   >
                     <img
-                      src={`https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${idx}`}
+                      src={`${serverUrl}/api/images/gallery/${gallery._id}/${idx}`}
                       alt={`${gallery.title}-${idx}`}
                       className="w-full h-full object-cover"
                     />

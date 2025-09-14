@@ -9,6 +9,7 @@ const AdminLogin = () => {
   const [message, setMessage] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     const token = localStorage.getItem('admin_token');
@@ -20,7 +21,7 @@ const AdminLogin = () => {
     setMessage('');
     setIsLoggingIn(true);
     try {
-      const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/login', {
+      const resp = await fetch(`${serverUrl}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -43,7 +44,7 @@ const AdminLogin = () => {
     setMessage('');
     setIsRegistering(true);
     try {
-      const resp = await fetch('https://keystone-backend-1.onrender.com/api/auth/register-initial', {
+      const resp = await fetch(`${serverUrl}/api/auth/register-initial`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })

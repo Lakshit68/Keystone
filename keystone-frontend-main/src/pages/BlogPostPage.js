@@ -20,6 +20,7 @@ const useBlogPost = (id) => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     if (!id) return;
@@ -29,7 +30,7 @@ const useBlogPost = (id) => {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`https://keystone-backend-1.onrender.com/api/blogs/${id}`);
+        const res = await fetch(`${serverUrl}/api/blogs/${id}`);
         if (!res.ok) throw new Error(`Failed to fetch post ${id}`);
         const a = await res.json();
 
@@ -37,7 +38,7 @@ const useBlogPost = (id) => {
           id: a._id,
           title: a.title || "Untitled",
           date: a.publishedAt || a.createdAt,
-          cover: `https://keystone-backend-1.onrender.com/api/images/blog/${a._id}`,
+          cover: `${serverUrl}/api/images/blog/${a._id}`,
           content: a.content || a.description || "",
           gallery: [] // extend later if you add gallery images
         };

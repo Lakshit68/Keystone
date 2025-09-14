@@ -25,13 +25,14 @@ export const GalleryPage = () => {
   const [galleries, setGalleries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await fetch(
-          "https://keystone-backend-1.onrender.com/api/galleries"
+          `${serverUrl}/api/galleries`
         );
         if (!response.ok) throw new Error("Failed to fetch galleries");
         const data = await response.json();
@@ -43,7 +44,7 @@ export const GalleryPage = () => {
           date: gallery.publishedAt || gallery.createdAt,
           images: gallery.images.map(
             (_, index) =>
-              `https://keystone-backend-1.onrender.com/api/images/gallery/${gallery._id}/${index}`
+              `${serverUrl}/api/images/gallery/${gallery._id}/${index}`
           ),
         }));
 

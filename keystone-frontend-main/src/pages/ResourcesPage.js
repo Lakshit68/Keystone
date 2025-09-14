@@ -13,6 +13,7 @@ const useResources = () => {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     let ignore = false;
@@ -20,7 +21,7 @@ const useResources = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('https://keystone-backend-1.onrender.com/api/resources');
+        const response = await fetch(`${serverUrl}/api/resources`);
         if (!response.ok) throw new Error('Failed to fetch resources');
         const data = await response.json();
         
@@ -29,8 +30,8 @@ const useResources = () => {
             id: resource._id,
             title: resource.title || "",
             description: resource.description || "",
-            image: `https://keystone-backend-1.onrender.com/api/images/resource/${resource._id}`,
-            file: `https://keystone-backend-1.onrender.com/api/files/resource/${resource._id}`,
+            image: `${serverUrl}/api/images/resource/${resource._id}`,
+            file: `${serverUrl}/api/files/resource/${resource._id}`,
             category: resource.category || "",
             publishedAt: resource.publishedAt || resource.createdAt
           }));

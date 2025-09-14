@@ -28,6 +28,7 @@ const useBlogs = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const serverUrl=process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     let ignore = false;
@@ -35,7 +36,7 @@ const useBlogs = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('https://keystone-backend-1.onrender.com/api/blogs');
+        const response = await fetch(`${serverUrl}/api/blogs`);
         if (!response.ok) throw new Error('Failed to fetch blogs');
         const data = await response.json();
         
@@ -77,7 +78,7 @@ const BlogCard = ({ post, onClick }) => {
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
         <img
-          src={`https://keystone-backend-1.onrender.com/api/images/blog/${post.id}`}
+          src={`${serverUrl}/api/images/blog/${post.id}`}
           alt={post.title}
           className="w-full h-56 object-cover rounded-[20px]"
           loading="lazy"

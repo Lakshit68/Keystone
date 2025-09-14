@@ -53,15 +53,15 @@ npm start
 
 ## 🔧 **API Endpoints Working**
 
-- `GET https://keystone-backend-1.onrender.com/api/blogs` - Fetch all blogs
-- `POST https://keystone-backend-1.onrender.com/api/blogs` - Create new blog
-- `GET https://keystone-backend-1.onrender.com/api/images/blog/:id` - Serve blog image
+- `GET ${serverUrl}/api/blogs` - Fetch all blogs
+- `POST ${serverUrl}/api/blogs` - Create new blog
+- `GET ${serverUrl}/api/images/blog/:id` - Serve blog image
 - Similar endpoints for galleries and resources
 
 ## 🐛 **If You Still See Errors**
 
 1. **Check MongoDB is running**: `ps aux | grep mongod`
-2. **Check server is running**: `curl https://keystone-backend-1.onrender.com/api/blogs`
+2. **Check server is running**: `curl ${serverUrl}/api/blogs`
 3. **Check React app**: Should be on https://localhost:3000
 4. **Clear browser cache** and refresh
 
