@@ -1,7 +1,11 @@
+const serverUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
 import React, { useEffect, useMemo, useState } from "react";
 import { getApiBase } from "../utils/apiBase";
 import { useNavigate } from "react-router-dom";
 import blogbg from "../components/assets/Blog-bg.jpg";
+import { LoadingSpinner } from "../components/atoms";
+
+
 
 const resolveImageUrl = (url) => {
   if (!url) return "";
@@ -28,8 +32,7 @@ const useBlogs = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const serverUrl=process.env.REACT_APP_BACKEND_URL;
-
+  
   useEffect(() => {
     let ignore = false;
     const fetchPosts = async () => {
@@ -74,7 +77,11 @@ const useBlogs = () => {
 
 const BlogCard = ({ post, onClick }) => {
   console.log(post)
+<<<<<<< HEAD
   const serverUrl = process.env.REACT_APP_BACKEND_URL;
+=======
+  console.log(serverUrl)
+>>>>>>> ee4fc50 (update)
   return (
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
@@ -100,6 +107,7 @@ const BlogCard = ({ post, onClick }) => {
 export const BlogPage = () => {
   const { top, rest, loading, error } = useBlogs();
   const navigate = useNavigate();
+  
 
   return (
     <div className="bg-white text-black">
@@ -119,7 +127,7 @@ export const BlogPage = () => {
 
       <section className="container mx-auto px-4 py-10">
         <h3 className="text-xl md:text-2xl font-semibold mb-6">Recent blog posts</h3>
-        {loading && <p className="text-gray-600">Loading posts...</p>}
+        {loading && <LoadingSpinner />}
         {error && <p className="text-red-600">{error}</p>}
         {!loading && !error && (
           <>

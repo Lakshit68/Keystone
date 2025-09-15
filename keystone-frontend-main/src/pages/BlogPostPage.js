@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getApiBase } from "../utils/apiBase";
+import { LoadingSpinner } from "../components/atoms";
 
 const formatDate = (iso) => {
   if (!iso) return "";
@@ -119,7 +120,7 @@ export const BlogPostPage = () => {
       {/* Main Content */}
       <section className="container mx-auto lg:w-4/6 px-4 mt-8">
         <div className="sm:px-10 w-full">
-          {loading && <p className="text-gray-600">Loading post...</p>}
+          {loading && <LoadingSpinner />}
           {error && <p className="text-red-700 font-semibold">{error}</p>}
           {!loading && !error && post && (
             <>
