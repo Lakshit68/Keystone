@@ -79,8 +79,6 @@ const BlogCard = ({ post, onClick }) => {
   console.log(post)
 
   
-
-
   return (
     <div className="flex flex-col cursor-pointer" onClick={onClick} role="button" tabIndex={0}>
       {post.image && (
@@ -126,7 +124,11 @@ export const BlogPage = () => {
 
       <section className="container mx-auto px-4 py-10">
         <h3 className="text-xl md:text-2xl font-semibold mb-6">Recent blog posts</h3>
-        {loading && <LoadingSpinner />}
+        {loading && (
+          <div className=" justify-center mt-2 mb-2">
+            <LoadingSpinner />
+          </div>
+        )}
         {error && <p className="text-red-600">{error}</p>}
         {!loading && !error && (
           <>

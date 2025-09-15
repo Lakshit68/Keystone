@@ -78,7 +78,7 @@ export const GalleryPage = () => {
 
       {/* Gallery Section */}
       <section className="bg-white text-black">
-        <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="container mx-auto px-4 py-5 md:py-12">
           <h3 className="text-2xl md:text-3xl font-semibold mb-6">Our Gallery</h3>
 
         {loading && <LoadingSpinner />}
